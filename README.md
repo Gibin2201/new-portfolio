@@ -28,8 +28,7 @@ Personal developer portfolio for **Gibin Thomas** (MCA student & Full-Stack Deve
     │   │   └── 20240229_151035.jpg # Original photo (excluded from dist/)
     │   └── archive/            # Archived legacy screenshots (excluded from dist/)
     └── documents/
-        ├── Gibin Thomas.pdf    # Active downloadable CV
-        └── resume.pdf          # Alternate archived CV (excluded from dist/)
+        └── Gibin Thomas.pdf    # Active downloadable CV
 ```
 
 ## Build & Deployment

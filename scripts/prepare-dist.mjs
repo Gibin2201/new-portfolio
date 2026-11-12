@@ -37,8 +37,7 @@ const TEXT_FILES_TO_CHECK = [
 const EXCLUDED_ASSETS = new Set([
   "assets/images/archive/image.png",
   "assets/images/archive/main.png",
-  "assets/images/profile/20240229_151035.jpg",
-  "assets/documents/resume.pdf"
+  "assets/images/profile/20240229_151035.jpg"
 ]);
 
 const EXCLUDED_DIR_PREFIXES = ["backup/", ".vscode/", ".git/", ".netlify/"];
