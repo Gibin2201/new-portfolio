@@ -23,6 +23,7 @@ Personal developer portfolio for **Gibin Thomas** (MCA student & Full-Stack Deve
     │   ├── logo.svg            # Vector Gibin.dev brand icon
     │   └── logo.png            # 512x512 PNG brand/app & social preview icon
     ├── images/
+    │   ├── education/          # Verified campus photographs for Education entries
     │   ├── profile/
     │   │   ├── Gibin.jpg       # Active hero profile photograph
     │   │   └── 20240229_151035.jpg # Original photo (excluded from dist/)
