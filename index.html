@@ -1,385 +1,815 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gibin Thomas | Full-Stack Developer &amp; MCA Student</title>
+  <meta name="description" content="Portfolio of Gibin Thomas, a BCA graduate and MCA student focused on full-stack web development using Python, Django, PHP, JavaScript, and MySQL.">
+  <meta name="author" content="Gibin Thomas">
+  <meta name="theme-color" content="#FFFFFF">
 
-    <!-- --------- UNICONS ---------- -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <!-- Open Graph / Social Sharing
+       Replace REPLACE_WITH_NETLIFY_DOMAIN below with your final Netlify subdomain (e.g. gibin-thomas) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/">
+  <meta property="og:title" content="Gibin Thomas | Full-Stack Developer">
+  <meta property="og:description" content="Full-Stack Developer portfolio showcasing verified projects, technical skills, education, and certifications.">
+  <meta property="og:image" content="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/assets/Gibin.jpg">
+  <link rel="canonical" href="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/">
 
-    <!-- --------- CSS ---------- -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-    <!-- --------- FAVICON ---------- -->
-    <link rel="shortcut icon" href="assets/images" type="image/x-icon">
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
-    <title>Portfolio</title>
-
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        emailjs.init("gibinthomas2201@gmail.com");
-    </script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="container">
-    <!-- --------------- HEADER --------------- -->
-      <nav id="header">
-        <div class="nav-logo">
-            <p class="nav-name"></p>
-            <span>..</span>
-        </div>
-        <div class="nav-menu" id="myNavMenu">
-            <ul class="nav_menu_list">
-                <li class="nav_list">
-                    <a href="#home" class="nav-link active-link">Home</a>
-                    <div class="circle"></div>
-                </li>
-                <li class="nav_list">
-                    <a href="#about" class="nav-link">About</a>
-                    <div class="circle"></div>
-                </li>
-                <li class="nav_list">
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <div class="circle"></div>
-                </li>
-                <li class="nav_list">
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <div class="circle"></div>
-                </li>
-            </ul>
-        </div>
-        <div class="nav-button">
-            <a href="Gibin Thomas.pdf" download>
-                <button class="btn">Download CV <i class="uil uil-file-alt"></i></button>
-            </a>
-        </div>
-        
-        <div class="nav-menu-btn">
-            <i class="uil uil-bars" onclick="myMenuFunction()"></i>
-        </div>
-      </nav>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <!-- ================= NAVBAR ================= -->
+  <header class="site-header" id="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a href="#home" class="nav-logo" aria-label="Gibin Thomas Home">
+        GIBIN THOMAS<span class="accent-dot">.</span>
+      </a>
 
-    <!-- -------------- MAIN ---------------- -->
-    <main class="wrapper">
-       <!-- -------------- FEATURED BOX ---------------- -->
-       <section class="featured-box" id="home">
-          <div class="featured-text">
-            <div class="featured-text-card">
-                <span>Gibin Thomas</span>
-            </div>
-            <div class="featured-name">
-                <p>I'm a <span class="typedText"></span></p>
-            </div>
-            <div class="featured-text-info">
-                <p>I am an aspiring Frontend Developer with a passion for crafting visually appealing, responsive, and user-friendly websites.
-                     As a BCA graduate and current MCA student, I am eager to apply my academic knowledge and continuously learn modern web technologies. With a keen eye for design and detail, 
-                    I aim to create engaging digital experiences while growing into a skilled professional in the field of web development.
-                </p>
-            </div>
-            <div class="featured-text-btn">
-                <button class="btn blue-btn" onclick="location.href='mailto:gibinthomas2201@gmail.com';">Hire Me</button>
-
-                <a href="Gibin Thomas.pdf" download>
-                    <button class="btn">Download CV <i class="uil uil-file-alt"></i></button>
-                </a>
-            </div>
-            <div class="social_icons">
-                <div class="icon">
-                    <a href="https://www.instagram.com/i_am_gibin_?igsh=NG1zOGI4aGppYzZp" target="_blank">
-                        <i class="uil uil-instagram"></i>
-                    </a>
-                </div>
-                <div class="icon">
-                    <a href="https://www.linkedin.com/in/gibin-thomas2003?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
-                        <i class="uil uil-linkedin-alt"></i>
-                    </a>
-                </div>
-                <div class="icon">
-                    <a href="https://github.com/Gibin2201" target="_blank">
-                        <i class="uil uil-github-alt"></i>
-                    </a>
-                </div>
-            </div>
-            
-          </div>
-          <div class="featured-image">
-            <div class="image">
-                <img src="assets/Gibin.jpg" alt="avatar">
-            </div>
-          </div>
-          <div class="scroll-icon-box">
-            <a href="#about" class="scroll-btn">
-                <i class="uil uil-mouse-alt"></i>
-                <p>Scroll Down</p>
-            </a>
-          </div>
-
-       </section>
-       <!-- -------------- ABOUT BOX ---------------- -->
-       <section class="section" id="about">
-          <div class="top-header">
-            <h1>About Me</h1>
-          </div>
-          <div class="row">
-            <div class="col">
-                <div class="about-info">
-                    <h3>My Introduction</h3>
-                    <p>
-                        I have a solid foundation in HTML, CSS, and JavaScript, and I'm exploring cutting-edge frameworks and libraries to implement interactive features.
-                        <!-- Additionally, I have experience working with content management systems (CMS) like WordPress. -->
-                    </p>
-                   
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Frontend</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>Bootstrap</span>
-                        <span>JavaScript</span>
-                        <!-- <span>Vue</span>
-                        <span>React</span>
-                        <span>Angular</span> -->
-                    </div>
-                </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Backend</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>PHP</span>
-                        <span>JAVA</span>
-                        <span>Python</span>
-                        <span>Django</span>
-                        <span>C++</span>
-                    </div>
-                </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Database</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>MySQL</span>
-                        <!-- <span>PostgreSQL</span>
-                        <span>MongoDB</span> -->
-                    </div>
-                </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Other Tools</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>Git</span>
-                        <span>Github</span>
-                        <span>VS Code</span>
-                        <span>Pycharm</span>
-                        <span>Responsive Design</span>
-                    </div>
-                </div>
-            </div>
-          </div>
-       </section>
-
-       <!-- -------------- PROJECT BOX ---------------- -->
-
-<section class="section" id="projects">
-  <div class="top-header">
-    <h1>Projects</h1>
-  </div>
-  <div class="project-container">
-    <!-- Project 1 -->
-    <div class="project-box">
-      <div class="project-img-wrapper">
-        <img src="assets/image.png" alt="Portfolio Website Screenshot" class="project-img">
-        <div class="overlay">
-          <p>Portfolio Website</p>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-mobile-actions">
+          <a href="Gibin%20Thomas.pdf" download="Gibin_Thomas_Resume.pdf" class="btn btn-primary btn-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Resume
+          </a>
         </div>
       </div>
-      <p>A personal portfolio website showcasing my projects, skills, and contact information with interactive design.</p>
-      <div class="tools">
-        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+
+      <div class="nav-actions">
+        <a href="Gibin%20Thomas.pdf" download="Gibin_Thomas_Resume.pdf" class="btn btn-primary nav-resume-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Resume
+        </a>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu">
+          <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
-    </div>
+    </nav>
+  </header>
 
-    <!-- Project 2 -->
-<!-- <div class="project-box">
-  <div class="project-img-wrapper">
-    <img src="images/project2.png" alt="Sunglasses E-commerce Website Screenshot" class="project-img">
-    <div class="overlay">
-      <p>Sunglasses E-commerce Website</p>
-    </div>
-  </div>
-  <p>An online platform for selling sunglasses, allowing users to browse products, add to cart, and purchase securely. Includes admin panel for product management.</p>
-  <div class="tools">
-    <span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
-  </div>
-</div> -->
+  <main id="main-content">
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero section-light" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="hero-greeting">
+            <span class="status-dot" aria-hidden="true"></span>
+            Welcome to my portfolio
+          </span>
 
+          <h1 class="hero-title">
+            Hello, I'm <span class="text-accent">Gibin Thomas</span>
+          </h1>
 
-    <!-- Project 3 -->
-   <!-- Project 3 -->
-<div class="project-box">
-  <div class="project-img-wrapper">
-    <img src="assets/main.png" alt="Clinic Management System Screenshot" class="project-img">
-    <div class="overlay">
-      <p>Clinic Management System</p>
-    </div>
-  </div>
-  <p>A web application for clinic management where patients can book appointments and view status, doctors can approve appointments, consult, and prescribe medicines, and admin can approve/reject doctors, manage medicines, and oversee overall operations.</p>
-  <div class="tools">
-    <span>Python</span><span>Django</span><span>Bootstrap</span>
-  </div>
-</div>
+          <p class="hero-subtitle">
+            <span class="hero-role-label">Full-Stack Developer</span>
+            <span class="role-separator" aria-hidden="true">·</span>
+            <span class="typing-wrap">
+              <span id="typed-subtitle" class="typed-text">MCA Student</span>
+              <span class="typed-cursor" aria-hidden="true">|</span>
+            </span>
+          </p>
 
-  </div>
-</section>
+          <p class="hero-description">
+            BCA graduate and current MCA student building responsive web applications, structured backend workflows, and MySQL-backed software solutions with Python, Django, PHP, and JavaScript.
+          </p>
 
-<!-- My Services Section -->
-<section class="section" id="services">
-  <div class="top-header">
-    <h1>My Services</h1>
-    <p>What I can do for you with passion and creativity</p>
-  </div>
-  <div class="services-container">
-    <!-- Service 1 -->
-    <div class="service-box">
-      <div class="icon">🎨</div>
-      <h3>UI/UX Design</h3>
-      <p>Designing clean, modern, and user-friendly interfaces to ensure an engaging user experience.</p>
-    </div>
-    <!-- Service 2 -->
-    <div class="service-box">
-      <div class="icon">💻</div>
-      <h3>Web Development</h3>
-      <p>Building responsive and functional websites using HTML, CSS, JavaScript, PHP, and Django.</p>
-    </div>
-    <!-- Service 3 -->
-    <div class="service-box">
-      <div class="icon">⚡</div>
-      <h3>Full-Stack Solutions</h3>
-      <p>Developing complete applications with frontend, backend, and database integration.</p>
-    </div>
-    <!-- Service 4 -->
-    <div class="service-box">
-      <div class="icon">📱</div>
-      <h3>Responsive Design</h3>
-      <p>Creating mobile-friendly designs that adapt seamlessly to all screen sizes.</p>
-    </div>
-  </div>
-</section>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              View Projects
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="Gibin%20Thomas.pdf" download="Gibin_Thomas_Resume.pdf" class="btn btn-secondary btn-lg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Resume
+            </a>
+          </div>
 
+          <div class="hero-socials" aria-label="Professional profile links">
+            <a href="https://github.com/Gibin2201" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
 
+            <a href="https://www.linkedin.com/in/gibin-thomas2003" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
 
-       <!-- -------------- CONTACT BOX ---------------- -->
-
-       <section class="section" id="contact">
-        <div class="top-header">
-            <h1>Get in touch</h1>
-            <!-- <span>Do you have a project in your mind, contact me here</span> -->
+            <a href="mailto:gibinthomas2201@gmail.com" class="social-pill" aria-label="Send email to gibinthomas2201@gmail.com">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>Email</span>
+            </a>
+          </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="contact-info">
-                    <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-                    <p><i class="uil uil-envelope"></i> Email: gibinthomas2201@gmail.com</p>
-                    <p><i class="uil uil-phone"></i> Mob: +91 7558870208</p>
-                </div>
-            </div>
-            <div class="col">
-                <form id="contact-form">
-                    <div class="form-control">
-                        <div class="form-inputs">
-                            <input type="text" id="name" name="name" class="input-field" placeholder="Name" required>
-                            <input type="email" id="email" name="email" class="input-field" placeholder="Email" required>
-                        </div>
-                        <div class="text-area">
-                            <textarea id="message" name="message" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="form-button">
-                            <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
-                        </div>
-                    </div>
-                </form>
-                <script>
-                    document.getElementById('contact-form').addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        emailjs.sendForm('gibinthomas2201@gmail.com', 'gibinthomas2201@gmail.com', this)
-                            .then(function(response) {
-                                alert('Message sent successfully!');
-                            }, function(error) {
-                                alert('Failed to send message.');
-                            });
-                    });
-                </script>
-            </div>
+
+        <div class="hero-visual reveal">
+          <div class="portrait-backdrop" aria-hidden="true"></div>
+          <div class="portrait-dots" aria-hidden="true"></div>
+          <figure class="portrait-card">
+            <img
+              src="assets/Gibin.jpg"
+              alt="Portrait of Gibin Thomas, Full-Stack Developer"
+              width="366"
+              height="484"
+              loading="eager"
+              decoding="async">
+            <figcaption class="portrait-caption">
+              <span class="caption-badge">BCA Graduate · MCA Student</span>
+            </figcaption>
+          </figure>
         </div>
+      </div>
     </section>
 
-    </main>
-
-
-    <!-- --------------- FOOTER --------------- -->
-    <footer>
-        <div class="top-footer">
-            <p>Gibin Thomas.</p>
+    <!-- ================= ABOUT SECTION ================= -->
+    <section class="section section-muted" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">About Me</span>
+          <h2 class="section-title">Building practical, reliable software</h2>
+          <p class="section-subtitle">
+            Combining academic computer application foundations with hands-on web and database engineering.
+          </p>
         </div>
-        <div class="middle-footer">
-            <ul class="footer-menu">
-                <li class="footer_menu_list">
-                    <a href="#home">Home</a>
-                </li>
-                <li class="footer_menu_list">
-                    <a href="#about">About</a>
-                </li>
-                <!-- <li class="footer_menu_list">
-                    <a href="#projects">Projects</a>
-                </li> -->
-                <li class="footer_menu_list">
-                    <a href="#contact">Contact</a>
-                </li>
+
+        <div class="about-grid">
+          <div class="about-story card reveal">
+            <h3>My Background</h3>
+            <p>
+              I am a Bachelor of Computer Applications (BCA) graduate from Mar Augusthinose College, Ramapuram (2022–2025) and a current Master of Computer Applications (MCA) student.
+            </p>
+            <p>
+              My focus spans full-stack development, web application development, and relational database management. I enjoy breaking down real-world workflows—such as clinic scheduling and online commerce—into clean interfaces backed by structured server-side logic.
+            </p>
+
+            <dl class="about-meta">
+              <div class="meta-item">
+                <dt>Education</dt>
+                <dd>MCA (Pursuing) · BCA Graduate</dd>
+              </div>
+              <div class="meta-item">
+                <dt>Location</dt>
+                <dd>Ramapuram, Kottayam, Kerala</dd>
+              </div>
+              <div class="meta-item">
+                <dt>Languages</dt>
+                <dd>English, Malayalam, Hindi</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="about-highlights">
+            <article class="highlight-card card reveal">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <h3>Full-Stack Development</h3>
+              <p>Developing cohesive frontend interfaces paired with Python/Django and PHP backend services.</p>
+            </article>
+
+            <article class="highlight-card card reveal">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <h3>Web Application Development</h3>
+              <p>Creating role-based portals, user authentication flows, and responsive layouts across devices.</p>
+            </article>
+
+            <article class="highlight-card card reveal">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              </div>
+              <h3>Database Management</h3>
+              <p>Designing structured MySQL schemas, data relationships, and dependable CRUD operations.</p>
+            </article>
+
+            <article class="highlight-card card reveal">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <h3>Problem-Solving</h3>
+              <p>Applying Data Structures, Algorithms, and OOP principles to build practical software solutions.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS SECTION ================= -->
+    <section class="section section-light" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Technical Stack</span>
+          <h2 class="section-title">Skills &amp; Technologies</h2>
+          <p class="section-subtitle">
+            Core languages, frameworks, and tools documented across my academic coursework and projects.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Frontend -->
+          <article class="skill-card card reveal">
+            <div class="skill-card-head">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18"/>
+                  <path d="M9 21V9"/>
+                </svg>
+              </div>
+              <h3>Frontend Development</h3>
+            </div>
+            <p class="skill-card-desc">Structured markup, responsive styling, and interactive client-side behavior.</p>
+            <ul class="skill-tags">
+              <li class="skill-tag">HTML</li>
+              <li class="skill-tag">CSS</li>
+              <li class="skill-tag">JavaScript</li>
+              <li class="skill-tag">Bootstrap</li>
+              <li class="skill-tag">Responsive Design</li>
             </ul>
-        </div>
-        <div class="footer-social-icons">
-            <div class="icon">
-                <a href="https://www.instagram.com/i_am_gibin_?igsh=NG1zOGI4aGppYzZp" target="_blank">
-                    <i class="uil uil-instagram"></i>
-                </a>
-            </div>
-            <div class="icon">
-                <a href="https://www.linkedin.com/in/gibin-thomas2003?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
-                    <i class="uil uil-linkedin-alt"></i>
-                </a>
-            </div>
-            <div class="icon">
-                <a href="https://github.com/Gibin2201" target="_blank">
-                    <i class="uil uil-github-alt"></i>
-                </a>
-            </div>
-        </div>
-        
-        <div class="bottom-footer">
-            <p>Copyright &copy; <a href="#home" style="text-decoration: none;">Gibin Thomas</a> - All rights reserved</p>
-        </div>
-    </footer>
+          </article>
 
+          <!-- Backend -->
+          <article class="skill-card card reveal">
+            <div class="skill-card-head">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                  <line x1="6" y1="6" x2="6.01" y2="6"/>
+                  <line x1="6" y1="18" x2="6.01" y2="18"/>
+                </svg>
+              </div>
+              <h3>Backend Development</h3>
+            </div>
+            <p class="skill-card-desc">Server-side application logic, MVC frameworks, and core programming languages.</p>
+            <ul class="skill-tags">
+              <li class="skill-tag">Python</li>
+              <li class="skill-tag">Django</li>
+              <li class="skill-tag">PHP</li>
+              <li class="skill-tag">Java</li>
+              <li class="skill-tag">C</li>
+              <li class="skill-tag">C++</li>
+            </ul>
+          </article>
+
+          <!-- Database -->
+          <article class="skill-card card reveal">
+            <div class="skill-card-head">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              </div>
+              <h3>Database Management</h3>
+            </div>
+            <p class="skill-card-desc">Relational data modeling, query design, and backend persistence.</p>
+            <ul class="skill-tags">
+              <li class="skill-tag">MySQL</li>
+            </ul>
+          </article>
+
+          <!-- Tools -->
+          <article class="skill-card card reveal">
+            <div class="skill-card-head">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <h3>Development Tools</h3>
+            </div>
+            <p class="skill-card-desc">Version control, collaboration, and integrated development environments.</p>
+            <ul class="skill-tags">
+              <li class="skill-tag">Git</li>
+              <li class="skill-tag">GitHub</li>
+              <li class="skill-tag">VS Code</li>
+              <li class="skill-tag">PyCharm</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section class="section section-muted" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Featured Work</span>
+          <h2 class="section-title">Verified Projects</h2>
+          <p class="section-subtitle">
+            Applications documented in my local portfolio and CV.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Clinic Management System -->
+          <article class="project-card card reveal" data-project-id="clinic-management">
+            <div class="project-preview preview-clinic" data-project-preview aria-hidden="true">
+              <div class="preview-window">
+                <div class="preview-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="preview-body">
+                  <div class="preview-pill">Django Role Portal</div>
+                  <div class="preview-modules">
+                    <div class="preview-module">
+                      <strong>Patient</strong>
+                      <span>Appointments &amp; Rx</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Doctor</strong>
+                      <span>Consult &amp; Prescribe</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Admin</strong>
+                      <span>Staff &amp; Medicines</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-category">Full-Stack Web App</span>
+              </div>
+              <h3 class="project-title">Clinic Management System</h3>
+              <p class="project-desc">
+                A multi-role clinic appointment and consultation platform connecting patients, doctors, and administrators in one structured workflow.
+              </p>
+
+              <ul class="project-features">
+                <li>Patients can book appointments and check visit status and prescriptions</li>
+                <li>Doctors can approve appointments, consult, and prescribe medicines</li>
+                <li>Admins approve or reject doctors and oversee clinic medicine records</li>
+              </ul>
+
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Django</span>
+                <span>Bootstrap</span>
+              </div>
+
+              <div class="project-links" data-project-links>
+                <div class="project-links-actions">
+                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for clinic-management in main.js">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    Repository Link Pending
+                  </button>
+                </div>
+                <span class="project-note">Verified in CV</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Sunglasses E-commerce Website -->
+          <article class="project-card card reveal" data-project-id="sunglasses-ecommerce">
+            <div class="project-preview preview-commerce" data-project-preview aria-hidden="true">
+              <div class="preview-window">
+                <div class="preview-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="preview-body">
+                  <div class="preview-pill">PHP &amp; MySQL Storefront</div>
+                  <div class="preview-modules">
+                    <div class="preview-module">
+                      <strong>Catalog</strong>
+                      <span>Product Listings</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Cart &amp; Auth</strong>
+                      <span>User Sessions</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Admin</strong>
+                      <span>Product Control</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-category">E-Commerce Platform</span>
+              </div>
+              <h3 class="project-title">Sunglasses E-commerce Website</h3>
+              <p class="project-desc">
+                A full-stack online store for browsing sunglasses, managing shopping carts, authenticating users, and administering product listings.
+              </p>
+
+              <ul class="project-features">
+                <li>Dynamic product listings backed by a MySQL database</li>
+                <li>Shopping cart workflow and user authentication features</li>
+                <li>Admin panel for adding, updating, and managing products</li>
+              </ul>
+
+              <div class="project-tech">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </div>
+
+              <div class="project-links" data-project-links>
+                <div class="project-links-actions">
+                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for sunglasses-ecommerce in main.js">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    Repository Link Pending
+                  </button>
+                </div>
+                <span class="project-note">Verified in CV</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Blood Bank & Donation Management System -->
+          <article class="project-card card reveal" data-project-id="blood-bank">
+            <div class="project-preview preview-bloodbank" data-project-preview aria-hidden="true">
+              <div class="preview-window">
+                <div class="preview-bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="preview-body">
+                  <div class="preview-pill">Responsive Frontend UI</div>
+                  <div class="preview-modules">
+                    <div class="preview-module">
+                      <strong>Donors</strong>
+                      <span>Registration UI</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Search</strong>
+                      <span>Nearby Blood Banks</span>
+                    </div>
+                    <div class="preview-module">
+                      <strong>Booking</strong>
+                      <span>Donor Scheduling</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-category">Frontend Web App · Jan–Feb 2024</span>
+              </div>
+              <h3 class="project-title">Blood Bank &amp; Donation Management</h3>
+              <p class="project-desc">
+                A responsive front-end web interface designed for community blood donation registration, blood bank lookup, and donor scheduling.
+              </p>
+
+              <ul class="project-features">
+                <li>User registration and login interface for prospective donors</li>
+                <li>Search flow designed to locate nearby blood banks</li>
+                <li>Appointment scheduling layout responsive across screen sizes</li>
+              </ul>
+
+              <div class="project-tech">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Responsive Design</span>
+              </div>
+
+              <div class="project-links" data-project-links>
+                <div class="project-links-actions">
+                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for blood-bank in main.js">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    Repository Link Pending
+                  </button>
+                </div>
+                <span class="project-note">Sole Developer</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EDUCATION SECTION ================= -->
+    <section class="section section-light" id="education">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Academic Journey</span>
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">
+            Formal computer science education and core software engineering coursework.
+          </p>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card card">
+              <div class="timeline-head">
+                <span class="timeline-period">Current</span>
+                <h3>Master of Computer Applications (MCA)</h3>
+              </div>
+              <p class="timeline-institution">Postgraduate Studies</p>
+              <p class="timeline-detail">
+                Advancing software engineering, full-stack web architecture, and database system design skills while building practical applications.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card card">
+              <div class="timeline-head">
+                <span class="timeline-period">2022 – 2025</span>
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+              </div>
+              <p class="timeline-institution">Mar Augusthinose College, Ramapuram, Kerala · Mahatma Gandhi University</p>
+              <p class="timeline-detail">
+                <strong>Relevant Coursework:</strong> Data Structures &amp; Algorithms, Object-Oriented Programming, Java, Python, PHP, HTML, Web Development, Database Management Systems (MySQL), Operating Systems, Cybersecurity, and Cloud Computing.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card card">
+              <div class="timeline-head">
+                <span class="timeline-period">2019 – 2021</span>
+                <h3>Higher Secondary Education</h3>
+              </div>
+              <p class="timeline-institution">St Thomas H.S.S Pala</p>
+              <p class="timeline-detail">
+                Completed higher secondary education before beginning undergraduate studies in Computer Applications.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= CERTIFICATIONS & WORKSHOPS ================= -->
+    <section class="section section-muted" id="certifications">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Verified Credentials</span>
+          <h2 class="section-title">Certifications &amp; Workshops</h2>
+          <p class="section-subtitle">
+            Technical certifications, hands-on workshops, and virtual job simulations completed alongside my degree.
+          </p>
+        </div>
+
+        <div class="cert-grid">
+          <article class="cert-card card reveal">
+            <div class="cert-top">
+              <span class="cert-type">Certification</span>
+              <span class="cert-date">May 2023</span>
+            </div>
+            <h3>Responsive Web Design Certification</h3>
+            <p class="cert-issuer">FreeCodeCamp · Online</p>
+            <p class="cert-desc">
+              Focused on modern HTML, CSS, Flexbox, and responsive web design principles for multi-device compatibility.
+            </p>
+          </article>
+
+          <article class="cert-card card reveal">
+            <div class="cert-top">
+              <span class="cert-type">Workshop</span>
+              <span class="cert-date">Oct 2024</span>
+            </div>
+            <h3>Cybersecurity &amp; Data Science with AI and ML</h3>
+            <p class="cert-issuer">Metailearn · Offline Intensive</p>
+            <p class="cert-desc">
+              Intensive hands-on workshop exploring AI/ML applications in data science alongside real-world cybersecurity threat detection and prevention case studies.
+            </p>
+          </article>
+
+          <article class="cert-card card reveal">
+            <div class="cert-top">
+              <span class="cert-type">Job Simulation</span>
+              <span class="cert-date">March 2024</span>
+            </div>
+            <h3>Tata Cybersecurity Security Analyst Simulation</h3>
+            <p class="cert-issuer">Forage · Tata Consultancy Services</p>
+            <p class="cert-desc">
+              Completed an Identity and Access Management (IAM) simulation covering cybersecurity best practices, business alignment, and technical documentation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section class="section section-light" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Get in Touch</span>
+          <h2 class="section-title">Contact Me</h2>
+          <p class="section-subtitle">
+            Interested in software development internships, junior full-stack opportunities, or project collaborations? Feel free to reach out.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-info card reveal">
+            <h3>Contact Information</h3>
+            <p class="contact-intro">
+              Reach me directly via email, phone, or LinkedIn.
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:gibinthomas2201@gmail.com">gibinthomas2201@gmail.com</a>
+                </div>
+              </li>
+
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="contact-label">Phone</span>
+                  <a href="tel:+917558870208">+91 7558870208</a>
+                </div>
+              </li>
+
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="contact-label">Location</span>
+                  <span>Ramapuram, Kottayam, Kerala</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="contact-socials">
+              <a href="https://github.com/Gibin2201" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">GitHub</a>
+              <a href="https://www.linkedin.com/in/gibin-thomas2003" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">LinkedIn</a>
+            </div>
+          </aside>
+
+          <form id="contact-form" class="contact-form card reveal" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Name <span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="contact-name" name="name" placeholder="Your full name" autocomplete="name" required>
+                <span class="field-error" id="error-name" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email <span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                <span class="field-error" id="error-email" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Subject <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="contact-subject" name="subject" placeholder="Internship opportunity, project inquiry, etc." required>
+              <span class="field-error" id="error-subject" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message <span class="required" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+              <span class="field-error" id="error-message" aria-live="polite"></span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                Send Message
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+
+            <div id="form-status" class="form-status" role="status" aria-live="polite" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo">GIBIN THOMAS<span class="accent-dot">.</span></a>
+        <p>Full-Stack Developer · BCA Graduate &amp; MCA Student</p>
+      </div>
+
+      <ul class="footer-links" aria-label="Footer navigation">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2026</span> Gibin Thomas. All rights reserved.</p>
+      </div>
     </div>
+  </footer>
 
-
-
-
-    <!-- ----- TYPING JS Link ----- -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
-       <!-- ----- SCROLL REVEAL JS Link----- -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!-- ----- MAIN JS ----- -->
-    <script src="main.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
