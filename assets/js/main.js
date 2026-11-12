@@ -564,18 +564,43 @@
   }
 
   /**
-   * Wire shared accessible modal open/close, backdrop click, Escape handling,
-   * and focus restoration without duplicating dialog boilerplate.
+   * Wire shared accessible modal open/close, backdrop click, top-of-stack Escape
+   * handling, nested modal inerting, and focus restoration.
    */
+  const openModalStack = [];
+
+  function syncModalLayering() {
+    const hasOpenModal = openModalStack.length > 0;
+    document.body.style.overflow = hasOpenModal ? "hidden" : "";
+    setBackgroundInert(hasOpenModal);
+    openModalStack.forEach((entry, idx) => {
+      if ("inert" in entry.modalEl) {
+        entry.modalEl.inert = idx < openModalStack.length - 1;
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && openModalStack.length > 0) {
+      openModalStack[openModalStack.length - 1].close();
+    }
+  });
+
   function createModalController(modalEl, closeBtnEl, onAfterClose) {
     if (!modalEl) return null;
     let activeTrigger = null;
+    let stackEntry = null;
 
     const close = () => {
       if (modalEl.hasAttribute("hidden")) return;
       modalEl.setAttribute("hidden", "");
-      document.body.style.overflow = "";
-      setBackgroundInert(false);
+      if (stackEntry) {
+        const idx = openModalStack.indexOf(stackEntry);
+        if (idx !== -1) {
+          openModalStack.splice(idx, 1);
+        }
+      }
+      syncModalLayering();
       if (typeof onAfterClose === "function") {
         onAfterClose();
       }
@@ -585,11 +610,15 @@
       activeTrigger = null;
     };
 
+    stackEntry = { modalEl, close };
+
     const open = (trigger) => {
       activeTrigger = trigger || null;
       modalEl.removeAttribute("hidden");
-      document.body.style.overflow = "hidden";
-      setBackgroundInert(true);
+      if (!openModalStack.includes(stackEntry)) {
+        openModalStack.push(stackEntry);
+      }
+      syncModalLayering();
       if (closeBtnEl) {
         closeBtnEl.focus();
       }
@@ -605,12 +634,6 @@
       }
     });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !modalEl.hasAttribute("hidden")) {
-        close();
-      }
-    });
-
     return { open, close };
   }
 
@@ -619,28 +642,46 @@
   const certModalTitle = document.getElementById("cert-modal-title");
   const certModalMeta = document.getElementById("cert-modal-meta");
   const certModalClose = document.getElementById("cert-modal-close");
-  const certTriggers = document.querySelectorAll("[data-cert-src]");
 
-  if (certModal && certModalImg && certTriggers.length > 0) {
+  if (certModal && certModalImg) {
     const certDialog = createModalController(certModal, certModalClose, () => {
       certModalImg.removeAttribute("src");
       certModalImg.alt = "";
     });
 
-    certTriggers.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const src = btn.getAttribute("data-cert-src");
-        if (!src || !certDialog) return;
-        certModalImg.src = src;
-        certModalImg.alt = btn.getAttribute("data-cert-alt") || "Full-size certificate preview";
-        if (certModalTitle) {
-          certModalTitle.textContent = btn.getAttribute("data-cert-title") || "Certificate Preview";
+    const openLightbox = (triggerEl, prefix) => {
+      const src = triggerEl.getAttribute(`data-${prefix}-src`);
+      if (!src || !certDialog) return;
+      certModalImg.src = src;
+      certModalImg.alt = triggerEl.getAttribute(`data-${prefix}-alt`) || "Full-size preview";
+      if (certModalTitle) {
+        certModalTitle.textContent = triggerEl.getAttribute(`data-${prefix}-title`) || "Preview";
+      }
+      if (certModalMeta) {
+        certModalMeta.textContent = triggerEl.getAttribute(`data-${prefix}-meta`) || "";
+      }
+      certDialog.open(triggerEl);
+    };
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const certBtn = event.target.closest("[data-cert-src]");
+      if (certBtn) {
+        openLightbox(certBtn, "cert");
+        return;
+      }
+      const lightboxBtn = event.target.closest("[data-lightbox-src]");
+      if (lightboxBtn) {
+        openLightbox(lightboxBtn, "lightbox");
+        return;
+      }
+      const cardPreviewBtn = event.target.closest("[data-cert-open-card]");
+      if (cardPreviewBtn) {
+        const thumbBtn = cardPreviewBtn.closest(".cert-card")?.querySelector(".cert-thumb-btn");
+        if (thumbBtn instanceof HTMLElement) {
+          thumbBtn.click();
         }
-        if (certModalMeta) {
-          certModalMeta.textContent = btn.getAttribute("data-cert-meta") || "";
-        }
-        certDialog.open(btn);
-      });
+      }
     });
   }
 
