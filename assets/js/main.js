@@ -8,6 +8,77 @@
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let prefersReducedMotion = reducedMotionQuery.matches;
 
+  /* ---------- 0. Optional Theme Toggle & Persistence ---------- */
+  const THEME_STORAGE_KEY = "gibin-theme";
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  let themeTransitionTimerId = null;
+
+  function applyTheme(theme, options = {}) {
+    const { persist = false, animate = false } = options;
+    const isDark = theme === "dark";
+    const root = document.documentElement;
+
+    if (themeTransitionTimerId) {
+      window.clearTimeout(themeTransitionTimerId);
+      themeTransitionTimerId = null;
+    }
+
+    if (animate && !prefersReducedMotion) {
+      root.classList.add("theme-transition");
+      themeTransitionTimerId = window.setTimeout(() => {
+        root.classList.remove("theme-transition");
+        themeTransitionTimerId = null;
+      }, 300);
+    } else {
+      root.classList.remove("theme-transition");
+    }
+
+    if (isDark) {
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute("content", isDark ? "#0B1120" : "#FFFFFF");
+    }
+
+    if (themeToggleBtn) {
+      const nextLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
+      themeToggleBtn.setAttribute("aria-pressed", String(isDark));
+      themeToggleBtn.setAttribute("aria-label", nextLabel);
+      themeToggleBtn.setAttribute("title", nextLabel);
+    }
+
+    if (persist) {
+      try {
+        window.localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+      } catch (_err) {
+        // Ignore storage restrictions so toggling still works in memory
+      }
+    }
+  }
+
+  const initialTheme =
+    document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  applyTheme(initialTheme, { persist: false, animate: false });
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const isCurrentlyDark = document.documentElement.getAttribute("data-theme") === "dark";
+      applyTheme(isCurrentlyDark ? "light" : "dark", { persist: true, animate: true });
+    });
+  }
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== THEME_STORAGE_KEY) return;
+    applyTheme(event.newValue === "dark" ? "dark" : "light", {
+      persist: false,
+      animate: false
+    });
+  });
+
   /* ---------- 1. Sticky Header & Mobile Navigation ---------- */
   const siteHeader = document.getElementById("site-header");
   const navToggle = document.getElementById("nav-toggle");
@@ -206,6 +277,7 @@
   const handleReducedMotionChange = (event) => {
     prefersReducedMotion = event.matches;
     if (prefersReducedMotion) {
+      document.documentElement.classList.remove("theme-transition");
       revealAllSections();
     }
   };
