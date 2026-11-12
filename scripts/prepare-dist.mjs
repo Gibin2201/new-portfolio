@@ -8,15 +8,15 @@ const DEFAULT_SITE_URL = "https://gibinthomas.netlify.app";
 const CORE_PRODUCTION_FILES = [
   "index.html",
   "404.html",
-  "style.css",
-  "main.js",
+  "assets/css/style.css",
+  "assets/js/main.js",
   "robots.txt",
   "sitemap.xml",
-  "Gibin Thomas.pdf",
-  "assets/Gibin.jpg",
-  "assets/favicon.svg",
-  "assets/logo.svg",
-  "assets/logo.png"
+  "assets/documents/Gibin Thomas.pdf",
+  "assets/images/profile/Gibin.jpg",
+  "assets/icons/favicon.svg",
+  "assets/icons/logo.svg",
+  "assets/icons/logo.png"
 ];
 
 const TEXT_FILES_WITH_SITE_URL = new Set([
@@ -28,18 +28,20 @@ const TEXT_FILES_WITH_SITE_URL = new Set([
 const TEXT_FILES_TO_CHECK = [
   "index.html",
   "404.html",
-  "style.css",
-  "main.js",
+  "assets/css/style.css",
+  "assets/js/main.js",
   "robots.txt",
   "sitemap.xml"
 ];
 
 const EXCLUDED_ASSETS = new Set([
-  "assets/image.png",
-  "assets/main.png",
-  "assets/20240229_151035.jpg",
-  "resume.pdf"
+  "assets/images/archive/image.png",
+  "assets/images/archive/main.png",
+  "assets/images/profile/20240229_151035.jpg",
+  "assets/documents/resume.pdf"
 ]);
+
+const EXCLUDED_DIR_PREFIXES = ["backup/", ".vscode/", ".git/", ".netlify/"];
 
 function parseValidHttpsOrigin(rawUrl) {
   if (typeof rawUrl !== "string") return "";
@@ -81,6 +83,51 @@ function resolveSiteUrl() {
   return DEFAULT_SITE_URL;
 }
 
+function resolveAndValidateAssetRef(sourceLabel, rawRef, baseSubdir = "") {
+  const trimmed = rawRef.trim();
+  if (
+    !trimmed ||
+    trimmed.startsWith("#") ||
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("//") ||
+    /^(?:mailto|tel|javascript|data):/i.test(trimmed)
+  ) {
+    return null;
+  }
+
+  const withoutQueryOrHash = trimmed.split("#")[0].split("?")[0];
+  if (!withoutQueryOrHash || withoutQueryOrHash === "/") return null;
+
+  const decoded = decodeURIComponent(withoutQueryOrHash).replace(/\\/g, "/");
+  const isRootRelative = decoded.startsWith("/");
+  const candidate = isRootRelative
+    ? decoded.slice(1)
+    : baseSubdir
+      ? path.posix.join(baseSubdir, decoded)
+      : decoded;
+  const rel = path.posix.normalize(candidate);
+
+  if (path.isAbsolute(rel) || rel.startsWith("..")) {
+    throw new Error(`Asset reference escapes workspace (${sourceLabel}): ${rawRef}`);
+  }
+
+  if (EXCLUDED_DIR_PREFIXES.some((prefix) => rel.startsWith(prefix))) {
+    throw new Error(`Refusing to publish excluded directory asset (${sourceLabel}): ${rel}`);
+  }
+
+  if (EXCLUDED_ASSETS.has(rel)) {
+    throw new Error(`Refusing to publish excluded legacy/unused asset (${sourceLabel}): ${rel}`);
+  }
+
+  const diskPath = path.join(rootDir, rel);
+  if (!fs.existsSync(diskPath)) {
+    throw new Error(`Referenced asset missing on disk (${sourceLabel}): ${rel}`);
+  }
+
+  return rel;
+}
+
 function collectReferencedHtmlAssets() {
   const htmlFiles = ["index.html", "404.html"];
   const collected = [];
@@ -92,43 +139,31 @@ function collectReferencedHtmlAssets() {
     const matches = [...html.matchAll(/(?:src|href)=["']([^"']+)["']/gi)];
 
     for (const match of matches) {
-      const rawRef = match[1].trim();
-      if (
-        !rawRef ||
-        rawRef.startsWith("#") ||
-        rawRef.startsWith("http://") ||
-        rawRef.startsWith("https://") ||
-        rawRef.startsWith("//") ||
-        /^(?:mailto|tel|javascript|data):/i.test(rawRef)
-      ) {
-        continue;
-      }
+      const rel = resolveAndValidateAssetRef(htmlFile, match[1]);
+      if (rel) collected.push(rel);
+    }
+  }
 
-      const withoutQueryOrHash = rawRef.split("#")[0].split("?")[0];
-      if (!withoutQueryOrHash || withoutQueryOrHash === "/") continue;
-
-      const decoded = decodeURIComponent(withoutQueryOrHash).replace(/\\/g, "/");
-      const stripped = decoded.startsWith("/") ? decoded.slice(1) : decoded;
-      const rel = path.posix.normalize(stripped);
-
-      if (path.isAbsolute(rel) || rel.startsWith("..")) {
-        throw new Error(`Asset reference escapes workspace (${htmlFile}): ${rawRef}`);
-      }
-
-      if (EXCLUDED_ASSETS.has(rel)) {
-        throw new Error(`Refusing to publish excluded legacy/unused asset (${htmlFile}): ${rel}`);
-      }
-
-      const diskPath = path.join(rootDir, rel);
-      if (!fs.existsSync(diskPath)) {
-        throw new Error(`Referenced asset missing on disk (${htmlFile}): ${rel}`);
-      }
-
-      collected.push(rel);
+  const cssPath = "assets/css/style.css";
+  const cssFullPath = path.join(rootDir, cssPath);
+  if (fs.existsSync(cssFullPath)) {
+    const css = fs.readFileSync(cssFullPath, "utf8");
+    const urlMatches = [...css.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/gi)];
+    for (const match of urlMatches) {
+      const rel = resolveAndValidateAssetRef(cssPath, match[2], path.posix.dirname(cssPath));
+      if (rel) collected.push(rel);
     }
   }
 
   return collected;
+}
+
+const indexFullPath = path.join(rootDir, "index.html");
+if (fs.existsSync(indexFullPath)) {
+  const indexHtml = fs.readFileSync(indexFullPath, "utf8");
+  if (!indexHtml.includes('data-netlify="true"') || !indexHtml.includes('name="contact"')) {
+    throw new Error('Netlify Forms attributes (data-netlify="true" name="contact") missing from index.html');
+  }
 }
 
 const resolvedSiteUrl = resolveSiteUrl();

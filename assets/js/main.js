@@ -8,7 +8,7 @@
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let prefersReducedMotion = reducedMotionQuery.matches;
 
-  /* ---------- 2. Sticky Header & Mobile Navigation ---------- */
+  /* ---------- 1. Sticky Header & Mobile Navigation ---------- */
   const siteHeader = document.getElementById("site-header");
   const navToggle = document.getElementById("nav-toggle");
   const navMenu = document.getElementById("nav-menu");
@@ -103,7 +103,7 @@
     }, { passive: true });
   }
 
-  /* ---------- 3. Header Shadow & Null-Safe Scroll Spy (rAF Throttled) ---------- */
+  /* ---------- 2. Header Shadow & Null-Safe Scroll Spy (rAF Throttled) ---------- */
   const sections = Array.from(document.querySelectorAll("main section[id]"));
   let scrollTicking = false;
 
@@ -157,63 +157,7 @@
   window.addEventListener("resize", scheduleScrollUpdate, { passive: true });
   updateHeaderAndActiveLink();
 
-  /* ---------- 4. Lightweight Typing Subtitle ---------- */
-  const typedTarget = document.getElementById("typed-subtitle");
-  const roles = [
-    "Python & Django Enthusiast",
-    "MCA Student",
-    "PHP & MySQL Developer",
-    "Problem Solver"
-  ];
-  let typingTimerId = null;
-
-  if (typedTarget) {
-    if (prefersReducedMotion) {
-      typedTarget.textContent = roles[0];
-    } else {
-      let roleIndex = 0;
-      let charIndex = roles[0].length;
-      let isDeleting = false;
-
-      const tick = () => {
-        if (prefersReducedMotion) {
-          typedTarget.textContent = roles[0];
-          return;
-        }
-        const currentRole = roles[roleIndex];
-
-        if (isDeleting) {
-          charIndex -= 1;
-          typedTarget.textContent = currentRole.slice(0, charIndex);
-
-          if (charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typingTimerId = window.setTimeout(tick, 400);
-            return;
-          }
-          typingTimerId = window.setTimeout(tick, 45);
-        } else {
-          charIndex += 1;
-          typedTarget.textContent = currentRole.slice(0, charIndex);
-
-          if (charIndex === currentRole.length) {
-            isDeleting = true;
-            typingTimerId = window.setTimeout(tick, 2000);
-            return;
-          }
-          typingTimerId = window.setTimeout(tick, 85);
-        }
-      };
-
-      typingTimerId = window.setTimeout(() => {
-        isDeleting = true;
-        tick();
-      }, 2200);
-    }
-  }
-
-  /* ---------- 5. Progressive Scroll Reveal (Lower Sections Only) ---------- */
+  /* ---------- 3. Progressive Scroll Reveal (Lower Sections Only) ---------- */
   const revealElements = Array.from(document.querySelectorAll(".reveal"));
   let revealObserver = null;
 
@@ -262,8 +206,6 @@
   const handleReducedMotionChange = (event) => {
     prefersReducedMotion = event.matches;
     if (prefersReducedMotion) {
-      if (typingTimerId) window.clearTimeout(typingTimerId);
-      if (typedTarget) typedTarget.textContent = roles[0];
       revealAllSections();
     }
   };
@@ -273,7 +215,85 @@
     reducedMotionQuery.addListener(handleReducedMotionChange);
   }
 
-  /* ---------- 6. Contact Form Validation & Netlify Forms Submission ---------- */
+  /* ---------- 4. Copy Email Action ---------- */
+  const copyEmailBtn = document.getElementById("copy-email-btn");
+  const copyEmailStatus = document.getElementById("copy-email-status");
+  let copyResetTimerId = null;
+
+  function copyTextFallback(text) {
+    const prevFocus = document.activeElement;
+    const helper = document.createElement("textarea");
+    helper.value = text;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.top = "-9999px";
+    helper.style.left = "-9999px";
+    document.body.appendChild(helper);
+    helper.focus({ preventScroll: true });
+    helper.select();
+    helper.setSelectionRange(0, text.length);
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } catch (_err) {
+      copied = false;
+    } finally {
+      document.body.removeChild(helper);
+      if (prevFocus && typeof prevFocus.focus === "function") {
+        prevFocus.focus({ preventScroll: true });
+      }
+    }
+    return copied;
+  }
+
+  if (copyEmailBtn) {
+    const labelSpan = copyEmailBtn.querySelector("span");
+    const defaultLabel = labelSpan ? labelSpan.textContent : "Copy Email";
+
+    copyEmailBtn.addEventListener("click", async () => {
+      const emailToCopy =
+        copyEmailBtn.getAttribute("data-email") || "gibinthomas2201@gmail.com";
+      let succeeded = false;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(emailToCopy);
+          succeeded = true;
+        } catch (_err) {
+          succeeded = copyTextFallback(emailToCopy);
+        }
+      } else {
+        succeeded = copyTextFallback(emailToCopy);
+      }
+
+      if (copyResetTimerId) {
+        window.clearTimeout(copyResetTimerId);
+      }
+
+      if (succeeded) {
+        copyEmailBtn.classList.add("is-copied");
+        if (labelSpan) labelSpan.textContent = "Copied";
+        if (copyEmailStatus) {
+          copyEmailStatus.classList.remove("is-error");
+          copyEmailStatus.textContent = "Email copied!";
+        }
+      } else if (copyEmailStatus) {
+        copyEmailStatus.classList.add("is-error");
+        copyEmailStatus.textContent = `Copy unavailable — email ${emailToCopy}`;
+      }
+
+      copyResetTimerId = window.setTimeout(() => {
+        copyEmailBtn.classList.remove("is-copied");
+        if (labelSpan) labelSpan.textContent = defaultLabel;
+        if (copyEmailStatus) {
+          copyEmailStatus.classList.remove("is-error");
+          copyEmailStatus.textContent = "";
+        }
+      }, 2800);
+    });
+  }
+
+  /* ---------- 5. Contact Form Validation & Netlify Forms Submission ---------- */
   const CONTACT_EMAIL = "gibinthomas2201@gmail.com";
   const MAX_MAILTO_URL_LENGTH = 1850;
   const contactForm = document.getElementById("contact-form");
@@ -488,7 +508,7 @@
     });
   }
 
-  /* ---------- 7. Footer Year ---------- */
+  /* ---------- 6. Footer Year ---------- */
   const yearEl = document.getElementById("footer-year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());

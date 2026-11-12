@@ -145,6 +145,7 @@ textarea {
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
+  text-wrap: balance;
   margin-bottom: 12px;
 }
 
@@ -233,8 +234,7 @@ textarea {
   transform: translateY(-1px);
 }
 
-.btn:disabled,
-.btn-placeholder {
+.btn:disabled {
   cursor: not-allowed;
   background-color: #F1F5F9;
   color: #475569;
@@ -243,8 +243,7 @@ textarea {
   transform: none;
 }
 
-.btn:disabled:hover,
-.btn-placeholder:hover {
+.btn:disabled:hover {
   transform: none;
   background-color: #F1F5F9;
   color: #475569;
@@ -416,6 +415,7 @@ textarea {
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  text-wrap: balance;
   margin-bottom: 14px;
 }
 
@@ -423,42 +423,38 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  gap: 6px 10px;
+  font-size: clamp(1rem, 1.9vw, 1.2rem);
   font-weight: 600;
+  line-height: 1.45;
   margin-bottom: 20px;
 }
 
-.hero-role-label {
+.hero-role-primary {
   color: var(--text-primary);
 }
 
-.role-separator {
-  color: #64748B;
+.hero-role-sep {
+  color: var(--text-secondary);
 }
 
-.typing-wrap {
+.hero-role-stack {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 4px 10px;
   color: var(--accent-blue);
-  min-height: 1.4em;
 }
 
-.typed-cursor {
-  margin-left: 2px;
-  color: var(--accent-blue);
-  animation: cursorBlink 0.9s infinite;
-}
-
-@keyframes cursorBlink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+.hero-role-item {
+  white-space: nowrap;
 }
 
 .hero-description {
   font-size: 1.05rem;
+  line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 560px;
+  max-width: 56ch;
   margin-bottom: 28px;
 }
 
@@ -735,23 +731,11 @@ textarea {
   border-color: #BFDBFE;
 }
 
-/* Custom Clean UI Architectural Previews (Zero Dummy Screenshots) */
+/* Custom Clean UI Architectural Previews */
 .project-preview {
   padding: 20px 20px 0;
   background: linear-gradient(180deg, var(--bg-muted) 0%, #F8FAFC 100%);
   border-bottom: 1px solid var(--border-color);
-}
-
-.project-preview.has-screenshot {
-  padding: 0;
-  background: var(--bg-secondary);
-}
-
-.project-screenshot-img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top center;
 }
 
 .preview-window {
@@ -900,30 +884,6 @@ textarea {
   border: 1px solid var(--border-color);
   padding: 4px 10px;
   border-radius: 999px;
-}
-
-.project-links {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.project-links-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-
-.project-note {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
 }
 
 /* ==========================================================================
@@ -1144,6 +1104,64 @@ textarea {
 .contact-list a:hover {
   color: var(--accent-blue);
   text-decoration: underline;
+}
+
+.contact-email-wrap {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 2px;
+}
+
+.btn-copy-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--accent-blue);
+  background-color: var(--bg-muted);
+  border: 1px solid #DBEAFE;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.btn-copy-email:hover {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #FFFFFF;
+}
+
+.btn-copy-email.is-copied {
+  background-color: #F0FDF4;
+  border-color: #BBF7D0;
+  color: #166534;
+}
+
+.copy-status {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #166534;
+}
+
+.copy-status:empty {
+  display: none;
+}
+
+.copy-status.is-error {
+  color: #991B1B;
 }
 
 .contact-socials {
@@ -1674,6 +1692,16 @@ textarea {
   }
 }
 
+@media (max-width: 600px) {
+  .hero-role-sep.desktop-only {
+    display: none;
+  }
+
+  .hero-role-stack {
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   .container {
     padding-inline: 16px;
@@ -1760,10 +1788,6 @@ textarea {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .typed-cursor {
-    animation: none;
   }
 }
 
