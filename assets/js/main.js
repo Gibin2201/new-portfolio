@@ -547,7 +547,73 @@
     syncBackToTop();
   }
 
-  /* ---------- 7. Certificate Preview Modal ---------- */
+  /* ---------- 7. Accessible Preview & Project Details Modals ---------- */
+  const backgroundRegions = [
+    document.getElementById("site-header"),
+    document.getElementById("main-content"),
+    document.querySelector(".site-footer"),
+    document.getElementById("back-to-top")
+  ].filter(Boolean);
+
+  function setBackgroundInert(isInert) {
+    backgroundRegions.forEach((el) => {
+      if ("inert" in el) {
+        el.inert = isInert;
+      }
+    });
+  }
+
+  /**
+   * Wire shared accessible modal open/close, backdrop click, Escape handling,
+   * and focus restoration without duplicating dialog boilerplate.
+   */
+  function createModalController(modalEl, closeBtnEl, onAfterClose) {
+    if (!modalEl) return null;
+    let activeTrigger = null;
+
+    const close = () => {
+      if (modalEl.hasAttribute("hidden")) return;
+      modalEl.setAttribute("hidden", "");
+      document.body.style.overflow = "";
+      setBackgroundInert(false);
+      if (typeof onAfterClose === "function") {
+        onAfterClose();
+      }
+      if (activeTrigger && typeof activeTrigger.focus === "function") {
+        activeTrigger.focus();
+      }
+      activeTrigger = null;
+    };
+
+    const open = (trigger) => {
+      activeTrigger = trigger || null;
+      modalEl.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      setBackgroundInert(true);
+      if (closeBtnEl) {
+        closeBtnEl.focus();
+      }
+    };
+
+    if (closeBtnEl) {
+      closeBtnEl.addEventListener("click", close);
+    }
+
+    modalEl.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.hasAttribute("data-close-modal")) {
+        close();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modalEl.hasAttribute("hidden")) {
+        close();
+      }
+    });
+
+    return { open, close };
+  }
+
   const certModal = document.getElementById("cert-modal");
   const certModalImg = document.getElementById("cert-modal-img");
   const certModalTitle = document.getElementById("cert-modal-title");
@@ -556,73 +622,55 @@
   const certTriggers = document.querySelectorAll("[data-cert-src]");
 
   if (certModal && certModalImg && certTriggers.length > 0) {
-    let activeCertTrigger = null;
-    const backgroundRegions = [
-      document.getElementById("site-header"),
-      document.getElementById("main-content"),
-      document.querySelector(".site-footer"),
-      document.getElementById("back-to-top")
-    ].filter(Boolean);
-
-    const setBackgroundInert = (isInert) => {
-      backgroundRegions.forEach((el) => {
-        if ("inert" in el) {
-          el.inert = isInert;
-        }
-      });
-    };
-
-    const closeCertModal = () => {
-      if (certModal.hasAttribute("hidden")) return;
-      certModal.setAttribute("hidden", "");
-      document.body.style.overflow = "";
-      setBackgroundInert(false);
+    const certDialog = createModalController(certModal, certModalClose, () => {
       certModalImg.removeAttribute("src");
       certModalImg.alt = "";
-      if (activeCertTrigger && typeof activeCertTrigger.focus === "function") {
-        activeCertTrigger.focus();
-      }
-      activeCertTrigger = null;
-    };
-
-    const openCertModal = (trigger) => {
-      const src = trigger.getAttribute("data-cert-src");
-      if (!src) return;
-      activeCertTrigger = trigger;
-      certModalImg.src = src;
-      certModalImg.alt = trigger.getAttribute("data-cert-alt") || "Full-size certificate preview";
-      if (certModalTitle) {
-        certModalTitle.textContent = trigger.getAttribute("data-cert-title") || "Certificate Preview";
-      }
-      if (certModalMeta) {
-        certModalMeta.textContent = trigger.getAttribute("data-cert-meta") || "";
-      }
-      certModal.removeAttribute("hidden");
-      document.body.style.overflow = "hidden";
-      setBackgroundInert(true);
-      if (certModalClose) {
-        certModalClose.focus();
-      }
-    };
+    });
 
     certTriggers.forEach((btn) => {
-      btn.addEventListener("click", () => openCertModal(btn));
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-cert-src");
+        if (!src || !certDialog) return;
+        certModalImg.src = src;
+        certModalImg.alt = btn.getAttribute("data-cert-alt") || "Full-size certificate preview";
+        if (certModalTitle) {
+          certModalTitle.textContent = btn.getAttribute("data-cert-title") || "Certificate Preview";
+        }
+        if (certModalMeta) {
+          certModalMeta.textContent = btn.getAttribute("data-cert-meta") || "";
+        }
+        certDialog.open(btn);
+      });
+    });
+  }
+
+  const projectModal = document.getElementById("project-modal");
+  const projectModalTitle = document.getElementById("project-modal-title");
+  const projectModalMeta = document.getElementById("project-modal-meta");
+  const projectModalBody = document.getElementById("project-modal-body");
+  const projectModalClose = document.getElementById("project-modal-close");
+  const projectTriggers = document.querySelectorAll("[data-project-detail]");
+
+  if (projectModal && projectModalBody && projectTriggers.length > 0) {
+    const projectDialog = createModalController(projectModal, projectModalClose, () => {
+      projectModalBody.innerHTML = "";
     });
 
-    if (certModalClose) {
-      certModalClose.addEventListener("click", closeCertModal);
-    }
-
-    certModal.addEventListener("click", (event) => {
-      if (event.target instanceof HTMLElement && event.target.hasAttribute("data-close-modal")) {
-        closeCertModal();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !certModal.hasAttribute("hidden")) {
-        closeCertModal();
-      }
+    projectTriggers.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-project-detail");
+        const tpl = id ? document.getElementById(`project-detail-${id}`) : null;
+        if (!(tpl instanceof HTMLTemplateElement) || !projectDialog) return;
+        projectModalBody.innerHTML = "";
+        projectModalBody.appendChild(tpl.content.cloneNode(true));
+        if (projectModalTitle) {
+          projectModalTitle.textContent = btn.getAttribute("data-project-title") || "Project Details";
+        }
+        if (projectModalMeta) {
+          projectModalMeta.textContent = btn.getAttribute("data-project-meta") || "";
+        }
+        projectDialog.open(btn);
+      });
     });
   }
 
