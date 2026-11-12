@@ -23,7 +23,7 @@ Before editing source files, the local workspace (`index.html`, `404.html`, `ass
 ### Created
 - `assets/images/social/og-image.png` (`1200x630`, `102,533` bytes) — Light-themed blue-accent social preview card featuring `Gibin.dev`, `Gibin Thomas`, `Full-Stack Developer | Python & Django Enthusiast`, core stack tags (`Python`, `Django`, `Laravel`, `PHP`, `MySQL`), and `gibinthomas.netlify.app`.
 - `GIBIN_DEV_IMPLEMENTATION_REPORT.md` — This implementation report.
-- `assets/images/certifications/nptel-business-english-communication.jpg` (`960x679`, `94,752` bytes) — Official NPTEL Elite certificate (`Jul–Oct 2026`, `93%`, Roll No: `NPTEL26HS184S858500543`) retrieved from user's LinkedIn certification post.
+- `assets/images/certifications/nptel-business-english-communication.jpg` (`960x679`, `94,752` bytes) — Official NPTEL Elite certificate (`Jul–Oct 2026`, `93%`) retrieved from user's LinkedIn certification post.
 - `assets/images/certifications/infosys-mastering-django.jpg` (`960x678`, `81,231` bytes) — Official Infosys Springboard Course Completion Certificate (`Mastering Django Web Development`, completed `Aug 31, 2026`) retrieved from user's LinkedIn certification post.
 
 ### Modified
