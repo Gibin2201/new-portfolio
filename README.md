@@ -2,6 +2,16 @@
 
 Personal developer portfolio for **Gibin Thomas** (MCA student & Full-Stack Developer). Built with semantic HTML5, modern CSS, vanilla JavaScript, and Netlify Forms, with a clean static build pipeline targeting `dist/`.
 
+Live site: `https://gibinthomas.netlify.app/`
+
+## Key Features
+
+- **Preserved Light Theme + Optional Dark Mode:** Defaults to the clean light theme for first-time visitors, with a navbar sun/moon toggle (`#theme-toggle`) that persists explicit dark/light preferences in `localStorage` (`gibin-theme`) and restores them before first paint via `assets/js/theme.js`.
+- **Subtle Micro-Interactions & Accessibility:** Progressive scroll-reveal animations (`IntersectionObserver`), gentle card/thumbnail hover states, tactile button transitions, accessible modals with focus management, and full support for `prefers-reduced-motion`.
+- **Projects & Details Modals:** Showcases **SmartSpend AI – Expense Tracker** (featured), **Clinic Management System**, and **Personal Developer Portfolio Website** with interactive View Details modals and full-size screenshot previews.
+- **Certifications & Privacy:** Displays `9` verified workshops and certifications with a full-size preview lightbox, using a privacy-redacted public copy of the NPTEL Business English Communication certificate.
+- **Netlify Contact Form:** Asynchronous `POST` submission with `bot-field` honeypot spam protection, client-side field validation, one-click Copy Email, and a bounded `mailto:` fallback when offline.
+
 ## Project Structure
 
 ```text
@@ -15,9 +25,10 @@ Personal developer portfolio for **Gibin Thomas** (MCA student & Full-Stack Deve
 │   └── prepare-dist.mjs        # Validates assets/Netlify Forms and builds dist/
 └── assets/
     ├── css/
-    │   └── style.css           # Design tokens, components, animations & responsive rules
+    │   └── style.css           # Light & optional dark theme tokens, micro-interactions & responsive rules
     ├── js/
-    │   └── main.js             # Navigation drawer, scroll spy, reveal, copy email, back-to-top & form handler
+    │   ├── theme.js            # Pre-paint theme restoration from localStorage (CSP-safe)
+    │   └── main.js             # Theme toggle, navigation drawer, scroll spy, reveal, modals, copy email & form handler
     ├── icons/
     │   ├── favicon.svg         # Browser SVG favicon
     │   ├── logo.svg            # Vector Gibin.dev brand icon
@@ -25,6 +36,7 @@ Personal developer portfolio for **Gibin Thomas** (MCA student & Full-Stack Deve
     ├── images/
     │   ├── certifications/     # Verified certificate images integrated into #certifications
     │   ├── education/          # Verified campus photographs for Education entries
+    │   ├── projects/           # Application screenshots for Projects cards and detail modals
     │   ├── profile/
     │   │   ├── Gibin.jpg       # Active hero profile photograph
     │   │   └── 20240229_151035.jpg # Original photo (excluded from dist/)
