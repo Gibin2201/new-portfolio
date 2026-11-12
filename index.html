@@ -3,22 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gibin Thomas | Full-Stack Developer &amp; MCA Student</title>
-  <meta name="description" content="Portfolio of Gibin Thomas, a BCA graduate and MCA student focused on full-stack web development using Python, Django, PHP, JavaScript, and MySQL.">
+  <title>Gibin.dev | Gibin Thomas — Full-Stack Developer</title>
+  <meta name="description" content="Gibin.dev — Portfolio of Gibin Thomas, Full-Stack Developer and Python &amp; Django Enthusiast specializing in responsive web applications, PHP, and MySQL databases.">
   <meta name="author" content="Gibin Thomas">
   <meta name="theme-color" content="#FFFFFF">
 
-  <!-- Open Graph / Social Sharing
-       Replace REPLACE_WITH_NETLIFY_DOMAIN below with your final Netlify subdomain (e.g. gibin-thomas) -->
+  <!-- Open Graph / Social Sharing / Canonical -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/">
-  <meta property="og:title" content="Gibin Thomas | Full-Stack Developer">
-  <meta property="og:description" content="Full-Stack Developer portfolio showcasing verified projects, technical skills, education, and certifications.">
-  <meta property="og:image" content="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/assets/Gibin.jpg">
-  <link rel="canonical" href="https://REPLACE_WITH_NETLIFY_DOMAIN.netlify.app/">
+  <meta property="og:site_name" content="Gibin.dev">
+  <meta property="og:url" content="https://gibinthomas.netlify.app/">
+  <meta property="og:title" content="Gibin.dev | Gibin Thomas — Full-Stack Developer">
+  <meta property="og:description" content="Full-Stack Developer &amp; Python &amp; Django Enthusiast building responsive web applications and database-driven software.">
+  <meta property="og:image" content="https://gibinthomas.netlify.app/assets/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Gibin.dev — Full-Stack Developer Brand Logo">
 
-  <!-- Favicon -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gibin.dev | Gibin Thomas — Full-Stack Developer">
+  <meta name="twitter:description" content="Full-Stack Developer &amp; Python &amp; Django Enthusiast building responsive web applications and database-driven software.">
+  <meta name="twitter:image" content="https://gibinthomas.netlify.app/assets/logo.png">
+  <meta name="twitter:image:alt" content="Gibin.dev — Full-Stack Developer Brand Logo">
+
+  <link rel="canonical" href="https://gibinthomas.netlify.app/">
+
+  <!-- Structured Data (Person Schema) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Gibin Thomas",
+      "alternateName": "Gibin.dev",
+      "jobTitle": "Full-Stack Developer",
+      "url": "https://gibinthomas.netlify.app/",
+      "image": "https://gibinthomas.netlify.app/assets/Gibin.jpg",
+      "email": "mailto:gibinthomas2201@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ramapuram",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Santhigiri College of Computer Sciences, Vazhithala"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Mar Augusthinose College, Ramapuram"
+        }
+      ],
+      "sameAs": [
+        "https://github.com/Gibin2201",
+        "https://www.linkedin.com/in/gibin-thomas2003"
+      ],
+      "knowsAbout": [
+        "Python",
+        "Django",
+        "PHP",
+        "MySQL",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "Java",
+        "C",
+        "C++",
+        "Git",
+        "GitHub"
+      ]
+    }
+  </script>
+
+  <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
 
   <!-- Google Fonts: Inter & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,13 +97,14 @@
   <!-- ================= NAVBAR ================= -->
   <header class="site-header" id="site-header">
     <nav class="nav container" aria-label="Primary navigation">
-      <a href="#home" class="nav-logo" aria-label="Gibin Thomas Home">
-        GIBIN THOMAS<span class="accent-dot">.</span>
+      <a href="#home" class="nav-logo" aria-label="Gibin.dev — Home">
+        <img src="assets/logo.svg" alt="" width="30" height="30" class="brand-icon" aria-hidden="true">
+        <span class="brand-wordmark">Gibin<span class="accent-dot">.dev</span></span>
       </a>
 
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li><a href="#home" class="nav-link active-link">Home</a></li>
+          <li><a href="#home" class="nav-link active-link" aria-current="location">Home</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -55,7 +119,7 @@
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download Resume
+            Download CV
           </a>
         </div>
       </div>
@@ -67,7 +131,7 @@
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          Download Resume
+          Download CV
         </a>
 
         <button
@@ -95,10 +159,10 @@
     <!-- ================= HERO SECTION ================= -->
     <section class="hero section-light" id="home">
       <div class="container hero-grid">
-        <div class="hero-content reveal">
+        <div class="hero-content">
           <span class="hero-greeting">
             <span class="status-dot" aria-hidden="true"></span>
-            Welcome to my portfolio
+            Gibin.dev · Portfolio
           </span>
 
           <h1 class="hero-title">
@@ -107,20 +171,20 @@
 
           <p class="hero-subtitle">
             <span class="hero-role-label">Full-Stack Developer</span>
-            <span class="role-separator" aria-hidden="true">·</span>
+            <span class="role-separator" aria-hidden="true">|</span>
             <span class="typing-wrap">
-              <span id="typed-subtitle" class="typed-text">MCA Student</span>
+              <span id="typed-subtitle" class="typed-text">Python &amp; Django Enthusiast</span>
               <span class="typed-cursor" aria-hidden="true">|</span>
             </span>
           </p>
 
           <p class="hero-description">
-            BCA graduate and current MCA student building responsive web applications, structured backend workflows, and MySQL-backed software solutions with Python, Django, PHP, and JavaScript.
+            MCA student and BCA graduate focused on building responsive web applications and database-driven software with Python, Django, PHP, MySQL, HTML, CSS, and JavaScript.
           </p>
 
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary btn-lg">
-              View Projects
+              View My Projects
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
@@ -132,7 +196,7 @@
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              Download Resume
+              Download CV
             </a>
           </div>
 
@@ -161,7 +225,7 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal">
+        <div class="hero-visual">
           <div class="portrait-backdrop" aria-hidden="true"></div>
           <div class="portrait-dots" aria-hidden="true"></div>
           <figure class="portrait-card">
@@ -171,9 +235,10 @@
               width="366"
               height="484"
               loading="eager"
+              fetchpriority="high"
               decoding="async">
             <figcaption class="portrait-caption">
-              <span class="caption-badge">BCA Graduate · MCA Student</span>
+              <span class="caption-badge">MCA Student · Full-Stack Developer</span>
             </figcaption>
           </figure>
         </div>
@@ -185,9 +250,9 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">About Me</span>
-          <h2 class="section-title">Building practical, reliable software</h2>
+          <h2 class="section-title">Practical Full-Stack &amp; Database Engineering</h2>
           <p class="section-subtitle">
-            Combining academic computer application foundations with hands-on web and database engineering.
+            Building responsive websites and database-driven applications with Python &amp; Django, PHP &amp; MySQL, and modern web fundamentals.
           </p>
         </div>
 
@@ -195,16 +260,16 @@
           <div class="about-story card reveal">
             <h3>My Background</h3>
             <p>
-              I am a Bachelor of Computer Applications (BCA) graduate from Mar Augusthinose College, Ramapuram (2022–2025) and a current Master of Computer Applications (MCA) student.
+              I am pursuing a Master of Computer Applications (MCA) at Santhigiri College of Computer Sciences, Vazhithala (Mahatma Gandhi University) after completing my BCA at Mar Augusthinose College, Ramapuram.
             </p>
             <p>
-              My focus spans full-stack development, web application development, and relational database management. I enjoy breaking down real-world workflows—such as clinic scheduling and online commerce—into clean interfaces backed by structured server-side logic.
+              I focus on full-stack web development using Python and Django alongside PHP and MySQL, combined with HTML, CSS, and JavaScript to craft responsive interfaces and reliable database-driven workflows.
             </p>
 
             <dl class="about-meta">
               <div class="meta-item">
                 <dt>Education</dt>
-                <dd>MCA (Pursuing) · BCA Graduate</dd>
+                <dd>MCA (2025–2027) · BCA Graduate</dd>
               </div>
               <div class="meta-item">
                 <dt>Location</dt>
@@ -225,8 +290,8 @@
                   <polyline points="8 6 2 12 8 18"/>
                 </svg>
               </div>
-              <h3>Full-Stack Development</h3>
-              <p>Developing cohesive frontend interfaces paired with Python/Django and PHP backend services.</p>
+              <h3>Python &amp; Django</h3>
+              <p>Building structured full-stack applications, multi-role portals, and clean MVC server workflows.</p>
             </article>
 
             <article class="highlight-card card reveal">
@@ -237,8 +302,8 @@
                   <line x1="12" y1="17" x2="12" y2="21"/>
                 </svg>
               </div>
-              <h3>Web Application Development</h3>
-              <p>Creating role-based portals, user authentication flows, and responsive layouts across devices.</p>
+              <h3>Responsive Web UI</h3>
+              <p>Developing accessible, mobile-ready frontends with HTML5, CSS3, JavaScript, and Bootstrap.</p>
             </article>
 
             <article class="highlight-card card reveal">
@@ -249,8 +314,8 @@
                   <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
                 </svg>
               </div>
-              <h3>Database Management</h3>
-              <p>Designing structured MySQL schemas, data relationships, and dependable CRUD operations.</p>
+              <h3>PHP &amp; MySQL Backends</h3>
+              <p>Designing database-driven web applications with structured schemas, auth sessions, and CRUD flows.</p>
             </article>
 
             <article class="highlight-card card reveal">
@@ -262,7 +327,7 @@
                 </svg>
               </div>
               <h3>Problem-Solving</h3>
-              <p>Applying Data Structures, Algorithms, and OOP principles to build practical software solutions.</p>
+              <p>Applying Data Structures, Algorithms, and OOP principles to turn requirements into maintainable code.</p>
             </article>
           </div>
         </div>
@@ -281,6 +346,28 @@
         </div>
 
         <div class="skills-grid">
+          <!-- Programming Languages -->
+          <article class="skill-card card reveal">
+            <div class="skill-card-head">
+              <div class="icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <h3>Programming Languages</h3>
+            </div>
+            <p class="skill-card-desc">Core programming languages for web backends, scripting, and computer science fundamentals.</p>
+            <ul class="skill-tags">
+              <li class="skill-tag">Python</li>
+              <li class="skill-tag">PHP</li>
+              <li class="skill-tag">JavaScript</li>
+              <li class="skill-tag">Java</li>
+              <li class="skill-tag">C</li>
+              <li class="skill-tag">C++</li>
+            </ul>
+          </article>
+
           <!-- Frontend -->
           <article class="skill-card card reveal">
             <div class="skill-card-head">
@@ -291,12 +378,12 @@
                   <path d="M9 21V9"/>
                 </svg>
               </div>
-              <h3>Frontend Development</h3>
+              <h3>Frontend</h3>
             </div>
-            <p class="skill-card-desc">Structured markup, responsive styling, and interactive client-side behavior.</p>
+            <p class="skill-card-desc">Structured markup, responsive styling, and interactive client-side interfaces.</p>
             <ul class="skill-tags">
-              <li class="skill-tag">HTML</li>
-              <li class="skill-tag">CSS</li>
+              <li class="skill-tag">HTML5</li>
+              <li class="skill-tag">CSS3</li>
               <li class="skill-tag">JavaScript</li>
               <li class="skill-tag">Bootstrap</li>
               <li class="skill-tag">Responsive Design</li>
@@ -314,16 +401,13 @@
                   <line x1="6" y1="18" x2="6.01" y2="18"/>
                 </svg>
               </div>
-              <h3>Backend Development</h3>
+              <h3>Backend</h3>
             </div>
-            <p class="skill-card-desc">Server-side application logic, MVC frameworks, and core programming languages.</p>
+            <p class="skill-card-desc">Server-side application logic, MVC architecture, and role-based workflows.</p>
             <ul class="skill-tags">
-              <li class="skill-tag">Python</li>
               <li class="skill-tag">Django</li>
               <li class="skill-tag">PHP</li>
-              <li class="skill-tag">Java</li>
-              <li class="skill-tag">C</li>
-              <li class="skill-tag">C++</li>
+              <li class="skill-tag">Python</li>
             </ul>
           </article>
 
@@ -337,9 +421,9 @@
                   <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
                 </svg>
               </div>
-              <h3>Database Management</h3>
+              <h3>Database</h3>
             </div>
-            <p class="skill-card-desc">Relational data modeling, query design, and backend persistence.</p>
+            <p class="skill-card-desc">Relational data modeling, SQL queries, and persistent application storage.</p>
             <ul class="skill-tags">
               <li class="skill-tag">MySQL</li>
             </ul>
@@ -353,9 +437,9 @@
                   <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                 </svg>
               </div>
-              <h3>Development Tools</h3>
+              <h3>Tools</h3>
             </div>
-            <p class="skill-card-desc">Version control, collaboration, and integrated development environments.</p>
+            <p class="skill-card-desc">Version control, source hosting, and local development environments.</p>
             <ul class="skill-tags">
               <li class="skill-tag">Git</li>
               <li class="skill-tag">GitHub</li>
@@ -372,16 +456,16 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">Featured Work</span>
-          <h2 class="section-title">Verified Projects</h2>
+          <h2 class="section-title">Projects</h2>
           <p class="section-subtitle">
-            Applications documented in my local portfolio and CV.
+            Academic and personal web applications built using Python, Django, PHP, MySQL, HTML, CSS, and JavaScript.
           </p>
         </div>
 
         <div class="projects-grid">
           <!-- Project 1: Clinic Management System -->
           <article class="project-card card reveal" data-project-id="clinic-management">
-            <div class="project-preview preview-clinic" data-project-preview aria-hidden="true">
+            <div class="project-preview preview-clinic" aria-hidden="true">
               <div class="preview-window">
                 <div class="preview-bar">
                   <span></span><span></span><span></span>
@@ -412,38 +496,25 @@
               </div>
               <h3 class="project-title">Clinic Management System</h3>
               <p class="project-desc">
-                A multi-role clinic appointment and consultation platform connecting patients, doctors, and administrators in one structured workflow.
+                A multi-role clinic portal connecting patients, doctors, and administrators within one structured appointment and consultation workflow.
               </p>
 
               <ul class="project-features">
                 <li>Patients can book appointments and check visit status and prescriptions</li>
-                <li>Doctors can approve appointments, consult, and prescribe medicines</li>
-                <li>Admins approve or reject doctors and oversee clinic medicine records</li>
+                <li>Doctors can approve appointments, manage consultations, and prescribe medicines</li>
+                <li>Administrators oversee doctor approvals and clinic medicine records</li>
               </ul>
 
               <div class="project-tech">
                 <span>Python</span>
                 <span>Django</span>
-                <span>Bootstrap</span>
-              </div>
-
-              <div class="project-links" data-project-links>
-                <div class="project-links-actions">
-                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for clinic-management in main.js">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    Repository Link Pending
-                  </button>
-                </div>
-                <span class="project-note">Verified in CV</span>
               </div>
             </div>
           </article>
 
           <!-- Project 2: Sunglasses E-commerce Website -->
           <article class="project-card card reveal" data-project-id="sunglasses-ecommerce">
-            <div class="project-preview preview-commerce" data-project-preview aria-hidden="true">
+            <div class="project-preview preview-commerce" aria-hidden="true">
               <div class="preview-window">
                 <div class="preview-bar">
                   <span></span><span></span><span></span>
@@ -474,40 +545,25 @@
               </div>
               <h3 class="project-title">Sunglasses E-commerce Website</h3>
               <p class="project-desc">
-                A full-stack online store for browsing sunglasses, managing shopping carts, authenticating users, and administering product listings.
+                A database-driven online storefront for browsing sunglasses, managing shopping carts, authenticating users, and administering catalog listings.
               </p>
 
               <ul class="project-features">
                 <li>Dynamic product listings backed by a MySQL database</li>
                 <li>Shopping cart workflow and user authentication features</li>
-                <li>Admin panel for adding, updating, and managing products</li>
+                <li>Admin panel for adding, updating, and managing store products</li>
               </ul>
 
               <div class="project-tech">
                 <span>PHP</span>
                 <span>MySQL</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-              </div>
-
-              <div class="project-links" data-project-links>
-                <div class="project-links-actions">
-                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for sunglasses-ecommerce in main.js">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    Repository Link Pending
-                  </button>
-                </div>
-                <span class="project-note">Verified in CV</span>
               </div>
             </div>
           </article>
 
-          <!-- Project 3: Blood Bank & Donation Management System -->
+          <!-- Project 3: Blood Bank Management System -->
           <article class="project-card card reveal" data-project-id="blood-bank">
-            <div class="project-preview preview-bloodbank" data-project-preview aria-hidden="true">
+            <div class="project-preview preview-bloodbank" aria-hidden="true">
               <div class="preview-window">
                 <div class="preview-bar">
                   <span></span><span></span><span></span>
@@ -536,33 +592,21 @@
               <div class="project-meta-row">
                 <span class="project-category">Frontend Web App · Jan–Feb 2024</span>
               </div>
-              <h3 class="project-title">Blood Bank &amp; Donation Management</h3>
+              <h3 class="project-title">Blood Bank Management System</h3>
               <p class="project-desc">
-                A responsive front-end web interface designed for community blood donation registration, blood bank lookup, and donor scheduling.
+                A responsive front-end web application supporting blood donor registration, nearby blood bank search, and donation appointment scheduling.
               </p>
 
               <ul class="project-features">
-                <li>User registration and login interface for prospective donors</li>
-                <li>Search flow designed to locate nearby blood banks</li>
-                <li>Appointment scheduling layout responsive across screen sizes</li>
+                <li>Donor registration and sign-in workflow for prospective donors</li>
+                <li>Search flow designed to help users locate nearby blood banks</li>
+                <li>Responsive scheduling layout adapted across desktop and mobile views</li>
               </ul>
 
               <div class="project-tech">
                 <span>HTML</span>
                 <span>CSS</span>
-                <span>Responsive Design</span>
-              </div>
-
-              <div class="project-links" data-project-links>
-                <div class="project-links-actions">
-                  <button type="button" class="btn btn-secondary btn-sm btn-placeholder" disabled title="Configure repoUrl for blood-bank in main.js">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    Repository Link Pending
-                  </button>
-                </div>
-                <span class="project-note">Sole Developer</span>
+                <span>JavaScript</span>
               </div>
             </div>
           </article>
@@ -586,12 +630,12 @@
             <div class="timeline-marker" aria-hidden="true"></div>
             <div class="timeline-card card">
               <div class="timeline-head">
-                <span class="timeline-period">Current</span>
+                <span class="timeline-period">2025 – 2027 · Currently Pursuing</span>
                 <h3>Master of Computer Applications (MCA)</h3>
               </div>
-              <p class="timeline-institution">Postgraduate Studies</p>
+              <p class="timeline-institution">Santhigiri College of Computer Sciences, Vazhithala · Mahatma Gandhi University, Kottayam</p>
               <p class="timeline-detail">
-                Advancing software engineering, full-stack web architecture, and database system design skills while building practical applications.
+                Advancing software engineering, full-stack web architecture, and database system design skills alongside practical application development.
               </p>
             </div>
           </li>
@@ -742,30 +786,36 @@
             </div>
           </aside>
 
-          <form id="contact-form" class="contact-form card reveal" novalidate>
+          <form id="contact-form" class="contact-form card reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="contact">
+            <div class="hp-field" aria-hidden="true">
+              <label for="bot-field">Leave this field empty if you are human</label>
+              <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="form-row">
               <div class="form-group">
                 <label for="contact-name">Name <span class="required" aria-hidden="true">*</span></label>
-                <input type="text" id="contact-name" name="name" placeholder="Your full name" autocomplete="name" required>
+                <input type="text" id="contact-name" name="name" placeholder="Your full name" autocomplete="name" minlength="2" maxlength="80" aria-describedby="error-name" required>
                 <span class="field-error" id="error-name" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="contact-email">Email <span class="required" aria-hidden="true">*</span></label>
-                <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="120" aria-describedby="error-email" required>
                 <span class="field-error" id="error-email" aria-live="polite"></span>
               </div>
             </div>
 
             <div class="form-group">
               <label for="contact-subject">Subject <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="contact-subject" name="subject" placeholder="Internship opportunity, project inquiry, etc." required>
+              <input type="text" id="contact-subject" name="subject" placeholder="Internship opportunity, project inquiry, etc." minlength="3" maxlength="140" aria-describedby="error-subject" required>
               <span class="field-error" id="error-subject" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
               <label for="contact-message">Message <span class="required" aria-hidden="true">*</span></label>
-              <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+              <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." minlength="10" maxlength="1500" aria-describedby="error-message" required></textarea>
               <span class="field-error" id="error-message" aria-live="polite"></span>
             </div>
 
@@ -780,6 +830,13 @@
             </div>
 
             <div id="form-status" class="form-status" role="status" aria-live="polite" hidden></div>
+
+            <noscript>
+              <p class="form-noscript">
+                JavaScript is currently disabled. On Netlify, submitting sends via standard form POST, or you can email me directly at
+                <a href="mailto:gibinthomas2201@gmail.com">gibinthomas2201@gmail.com</a>.
+              </p>
+            </noscript>
           </form>
         </div>
       </div>
@@ -790,8 +847,11 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="#home" class="nav-logo">GIBIN THOMAS<span class="accent-dot">.</span></a>
-        <p>Full-Stack Developer · BCA Graduate &amp; MCA Student</p>
+        <a href="#home" class="nav-logo footer-logo" aria-label="Gibin.dev — Home">
+          <img src="assets/logo.svg" alt="" width="28" height="28" class="brand-icon" aria-hidden="true">
+          <span class="brand-wordmark">Gibin<span class="accent-dot">.dev</span></span>
+        </a>
+        <p>Gibin Thomas · Full-Stack Developer</p>
       </div>
 
       <ul class="footer-links" aria-label="Footer navigation">
@@ -804,8 +864,14 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
 
+      <ul class="footer-socials" aria-label="Footer social and contact links">
+        <li><a href="https://github.com/Gibin2201" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/gibin-thomas2003" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="mailto:gibinthomas2201@gmail.com">gibinthomas2201@gmail.com</a></li>
+      </ul>
+
       <div class="footer-bottom">
-        <p>&copy; <span id="footer-year">2026</span> Gibin Thomas. All rights reserved.</p>
+        <p>&copy; <span id="footer-year">2026</span> Gibin.dev · Gibin Thomas. All rights reserved.</p>
       </div>
     </div>
   </footer>

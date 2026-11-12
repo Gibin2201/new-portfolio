@@ -1,188 +1,50 @@
 /* ==========================================================================
-   GIBIN THOMAS — PORTFOLIO CONFIGURATION, INTERACTIONS & VALIDATION
+   GIBIN.DEV — PORTFOLIO INTERACTIONS & NETLIFY FORM VALIDATION
    ========================================================================== */
 
 (() => {
   "use strict";
 
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---------- Helper: Detect Unconfigured Placeholders ---------- */
-  function isConfiguredValue(value) {
-    if (typeof value !== "string") return false;
-    const trimmed = value.trim();
-    return Boolean(trimmed) && !trimmed.startsWith("REPLACE_WITH_");
-  }
-
-  /* ---------- Project Links & Genuine Screenshots Configuration ----------
-   * Update each project below when repository URLs, live demos, or clean
-   * dummy-free screenshots are ready:
-   * - repoUrl: Full GitHub repository URL (e.g. "https://github.com/Gibin2201/your-repo").
-   *            While left as a REPLACE_WITH_* placeholder, cards show "Repository Link Pending"
-   *            instead of linking to the general profile.
-   * - demoUrl: Full live demo URL (leave "" to keep Live Demo button hidden).
-   * - screenshotSrc: Relative path to a genuine screenshot (e.g. "assets/clinic-app.png")
-   *                  and also add it to scripts/prepare-dist.mjs PRODUCTION_ASSETS.
-   */
-  const PROJECTS_CONFIG = {
-    "clinic-management": {
-      title: "Clinic Management System",
-      repoUrl: "REPLACE_WITH_CLINIC_MANAGEMENT_REPO_URL",
-      demoUrl: "",
-      screenshotSrc: "",
-      screenshotAlt: "Clinic Management System application screenshot"
-    },
-    "sunglasses-ecommerce": {
-      title: "Sunglasses E-commerce Website",
-      repoUrl: "REPLACE_WITH_SUNGLASSES_ECOMMERCE_REPO_URL",
-      demoUrl: "",
-      screenshotSrc: "",
-      screenshotAlt: "Sunglasses E-commerce Website storefront screenshot"
-    },
-    "blood-bank": {
-      title: "Blood Bank & Donation Management",
-      repoUrl: "REPLACE_WITH_BLOOD_BANK_REPO_URL",
-      demoUrl: "",
-      screenshotSrc: "",
-      screenshotAlt: "Blood Bank and Donation Management interface screenshot"
-    }
-  };
-
-  /* ---------- EmailJS Configuration ----------
-   * To enable direct browser form submissions without a backend:
-   * 1. Sign up at https://www.emailjs.com/ and create an Email Service & Template
-   *    matching form field names: name, email, subject, message.
-   * 2. Replace the three REPLACE_WITH_* placeholders below with your real credentials.
-   *    The EmailJS v4 browser SDK loads automatically only once valid credentials exist.
-   */
-  const EMAILJS_CONFIG = {
-    publicKey: "REPLACE_WITH_EMAILJS_PUBLIC_KEY",
-    serviceId: "REPLACE_WITH_EMAILJS_SERVICE_ID",
-    templateId: "REPLACE_WITH_EMAILJS_TEMPLATE_ID"
-  };
-
-  const EMAILJS_SDK_URL =
-    "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-
-  /* ---------- 1. Hydrate Project Links & Screenshots ---------- */
-  function createSvgIcon(pathD, viewBox = "0 0 24 24", isStroke = false) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", "15");
-    svg.setAttribute("height", "15");
-    svg.setAttribute("viewBox", viewBox);
-    svg.setAttribute("aria-hidden", "true");
-
-    if (isStroke) {
-      svg.setAttribute("fill", "none");
-      svg.setAttribute("stroke", "currentColor");
-      svg.setAttribute("stroke-width", "2");
-      svg.setAttribute("stroke-linecap", "round");
-      svg.setAttribute("stroke-linejoin", "round");
-    } else {
-      svg.setAttribute("fill", "currentColor");
-    }
-
-    pathD.forEach((d) => {
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("d", d);
-      svg.appendChild(path);
-    });
-    return svg;
-  }
-
-  function hydrateProjects() {
-    const githubIconPath = [
-      "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-    ];
-    const externalIconPaths = [
-      "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
-      "M15 3h6v6",
-      "M10 14L21 3"
-    ];
-
-    document.querySelectorAll("[data-project-id]").forEach((card) => {
-      const id = card.getAttribute("data-project-id");
-      const cfg = PROJECTS_CONFIG[id];
-      if (!cfg) return;
-
-      // Replace architectural preview with genuine screenshot when configured
-      const previewContainer = card.querySelector("[data-project-preview]");
-      if (previewContainer && isConfiguredValue(cfg.screenshotSrc)) {
-        const img = document.createElement("img");
-        img.src = cfg.screenshotSrc;
-        img.alt = cfg.screenshotAlt || `${cfg.title} screenshot`;
-        img.className = "project-screenshot-img";
-        img.loading = "lazy";
-        img.decoding = "async";
-        previewContainer.classList.add("has-screenshot");
-        previewContainer.removeAttribute("aria-hidden");
-        previewContainer.replaceChildren(img);
-      }
-
-      // Render project repository link (or explicit placeholder) + optional live demo
-      const linksRow = card.querySelector("[data-project-links]");
-      if (!linksRow) return;
-      let actionsGroup = linksRow.querySelector(".project-links-actions");
-      if (!actionsGroup) {
-        actionsGroup = document.createElement("div");
-        actionsGroup.className = "project-links-actions";
-        linksRow.prepend(actionsGroup);
-      }
-      actionsGroup.replaceChildren();
-
-      if (isConfiguredValue(cfg.repoUrl)) {
-        const repoLink = document.createElement("a");
-        repoLink.href = cfg.repoUrl;
-        repoLink.target = "_blank";
-        repoLink.rel = "noopener noreferrer";
-        repoLink.className = "btn btn-secondary btn-sm";
-        repoLink.setAttribute("aria-label", `View ${cfg.title} GitHub repository`);
-        repoLink.appendChild(createSvgIcon(githubIconPath));
-        repoLink.appendChild(document.createTextNode(" GitHub Repo"));
-        actionsGroup.appendChild(repoLink);
-      } else {
-        const placeholderBtn = document.createElement("button");
-        placeholderBtn.type = "button";
-        placeholderBtn.disabled = true;
-        placeholderBtn.className = "btn btn-secondary btn-sm btn-placeholder";
-        placeholderBtn.title = `Configure repoUrl for "${id}" in main.js -> PROJECTS_CONFIG`;
-        placeholderBtn.appendChild(createSvgIcon(githubIconPath));
-        placeholderBtn.appendChild(document.createTextNode(" Repository Link Pending"));
-        actionsGroup.appendChild(placeholderBtn);
-      }
-
-      if (isConfiguredValue(cfg.demoUrl)) {
-        const demoLink = document.createElement("a");
-        demoLink.href = cfg.demoUrl;
-        demoLink.target = "_blank";
-        demoLink.rel = "noopener noreferrer";
-        demoLink.className = "btn btn-primary btn-sm";
-        demoLink.setAttribute("aria-label", `Open ${cfg.title} live demo`);
-        demoLink.appendChild(document.createTextNode("Live Demo "));
-        demoLink.appendChild(createSvgIcon(externalIconPaths, "0 0 24 24", true));
-        actionsGroup.appendChild(demoLink);
-      }
-    });
-  }
-
-  hydrateProjects();
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let prefersReducedMotion = reducedMotionQuery.matches;
 
   /* ---------- 2. Sticky Header & Mobile Navigation ---------- */
   const siteHeader = document.getElementById("site-header");
   const navToggle = document.getElementById("nav-toggle");
   const navMenu = document.getElementById("nav-menu");
   const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+  const mainContent = document.getElementById("main-content");
+  const siteFooter = document.querySelector(".site-footer");
+  const desktopNavMedia = window.matchMedia("(min-width: 1041px)");
+
+  function getDrawerFocusableElements() {
+    if (!navMenu || !navToggle) return [];
+    const menuItems = Array.from(
+      navMenu.querySelectorAll("a[href], button:not([disabled])")
+    );
+    return [navToggle, ...menuItems];
+  }
 
   function setMenuOpen(isOpen) {
     if (!navMenu || !navToggle) return;
-    navMenu.classList.toggle("is-open", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
+    const openState = Boolean(isOpen) && !desktopNavMedia.matches;
+    navMenu.classList.toggle("is-open", openState);
+    navToggle.setAttribute("aria-expanded", String(openState));
+
+    if ("inert" in HTMLElement.prototype) {
+      if (mainContent) mainContent.inert = openState;
+      if (siteFooter) siteFooter.inert = openState;
+    }
   }
 
   if (navToggle && navMenu) {
     navToggle.addEventListener("click", () => {
       const nextState = !navMenu.classList.contains("is-open");
       setMenuOpen(nextState);
+      if (nextState) {
+        const firstLink = navMenu.querySelector("a[href]");
+        if (firstLink) firstLink.focus();
+      }
     });
 
     navMenu.querySelectorAll("a").forEach((link) => {
@@ -190,9 +52,27 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && navMenu.classList.contains("is-open")) {
+      if (!navMenu.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") {
         setMenuOpen(false);
         navToggle.focus();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusables = getDrawerFocusableElements();
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
 
@@ -205,10 +85,27 @@
         setMenuOpen(false);
       }
     });
+
+    const handleViewportChange = (event) => {
+      if (event.matches && navMenu.classList.contains("is-open")) {
+        setMenuOpen(false);
+      }
+    };
+    if (typeof desktopNavMedia.addEventListener === "function") {
+      desktopNavMedia.addEventListener("change", handleViewportChange);
+    } else if (typeof desktopNavMedia.addListener === "function") {
+      desktopNavMedia.addListener(handleViewportChange);
+    }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1040 && navMenu.classList.contains("is-open")) {
+        setMenuOpen(false);
+      }
+    }, { passive: true });
   }
 
-  /* ---------- 3. Header Shadow & Null-Safe Scroll Spy ---------- */
+  /* ---------- 3. Header Shadow & Null-Safe Scroll Spy (rAF Throttled) ---------- */
   const sections = Array.from(document.querySelectorAll("main section[id]"));
+  let scrollTicking = false;
 
   function updateHeaderAndActiveLink() {
     const scrollY = window.scrollY;
@@ -229,11 +126,8 @@
       currentSectionId = sections[sections.length - 1].getAttribute("id");
     } else {
       for (const section of sections) {
-        const top = section.offsetTop - headerOffset;
-        const bottom = top + section.offsetHeight;
-        if (scrollY >= top && scrollY < bottom) {
+        if (scrollY + headerOffset >= section.offsetTop) {
           currentSectionId = section.getAttribute("id");
-          break;
         }
       }
     }
@@ -242,20 +136,36 @@
       const href = link.getAttribute("href");
       const isActive = href === `#${currentSectionId}`;
       link.classList.toggle("active-link", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
   }
 
-  window.addEventListener("scroll", updateHeaderAndActiveLink, { passive: true });
+  function scheduleScrollUpdate() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      updateHeaderAndActiveLink();
+      scrollTicking = false;
+    });
+  }
+
+  window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
+  window.addEventListener("resize", scheduleScrollUpdate, { passive: true });
   updateHeaderAndActiveLink();
 
   /* ---------- 4. Lightweight Typing Subtitle ---------- */
   const typedTarget = document.getElementById("typed-subtitle");
   const roles = [
+    "Python & Django Enthusiast",
     "MCA Student",
-    "Python & Django Developer",
-    "PHP & MySQL Builder",
+    "PHP & MySQL Developer",
     "Problem Solver"
   ];
+  let typingTimerId = null;
 
   if (typedTarget) {
     if (prefersReducedMotion) {
@@ -266,6 +176,10 @@
       let isDeleting = false;
 
       const tick = () => {
+        if (prefersReducedMotion) {
+          typedTarget.textContent = roles[0];
+          return;
+        }
         const currentRole = roles[roleIndex];
 
         if (isDeleting) {
@@ -275,37 +189,55 @@
           if (charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
-            setTimeout(tick, 400);
+            typingTimerId = window.setTimeout(tick, 400);
             return;
           }
-          setTimeout(tick, 45);
+          typingTimerId = window.setTimeout(tick, 45);
         } else {
           charIndex += 1;
           typedTarget.textContent = currentRole.slice(0, charIndex);
 
           if (charIndex === currentRole.length) {
             isDeleting = true;
-            setTimeout(tick, 2000);
+            typingTimerId = window.setTimeout(tick, 2000);
             return;
           }
-          setTimeout(tick, 85);
+          typingTimerId = window.setTimeout(tick, 85);
         }
       };
 
-      setTimeout(() => {
+      typingTimerId = window.setTimeout(() => {
         isDeleting = true;
         tick();
       }, 2200);
     }
   }
 
-  /* ---------- 5. Moderate Scroll Reveal (IntersectionObserver) ---------- */
+  /* ---------- 5. Progressive Scroll Reveal (Lower Sections Only) ---------- */
   const revealElements = Array.from(document.querySelectorAll(".reveal"));
+  let revealObserver = null;
+
+  function revealAllSections() {
+    document.documentElement.classList.remove("js-animations");
+    revealElements.forEach((el) => {
+      el.classList.add("is-visible");
+      if (revealObserver) revealObserver.unobserve(el);
+    });
+  }
 
   if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-    revealElements.forEach((el) => el.classList.add("is-visible"));
+    revealAllSections();
   } else {
-    const observer = new IntersectionObserver(
+    revealElements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.94) {
+        el.classList.add("is-visible");
+      }
+    });
+
+    document.documentElement.classList.add("js-animations");
+
+    revealObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -320,19 +252,46 @@
       }
     );
 
-    revealElements.forEach((el) => observer.observe(el));
+    revealElements.forEach((el) => {
+      if (!el.classList.contains("is-visible")) {
+        revealObserver.observe(el);
+      }
+    });
   }
 
-  /* ---------- 6. Contact Form Validation & EmailJS Integration ---------- */
+  const handleReducedMotionChange = (event) => {
+    prefersReducedMotion = event.matches;
+    if (prefersReducedMotion) {
+      if (typingTimerId) window.clearTimeout(typingTimerId);
+      if (typedTarget) typedTarget.textContent = roles[0];
+      revealAllSections();
+    }
+  };
+  if (typeof reducedMotionQuery.addEventListener === "function") {
+    reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+  } else if (typeof reducedMotionQuery.addListener === "function") {
+    reducedMotionQuery.addListener(handleReducedMotionChange);
+  }
+
+  /* ---------- 6. Contact Form Validation & Netlify Forms Submission ---------- */
+  const CONTACT_EMAIL = "gibinthomas2201@gmail.com";
+  const MAX_MAILTO_URL_LENGTH = 1850;
   const contactForm = document.getElementById("contact-form");
   const formStatus = document.getElementById("form-status");
   const submitBtn = document.getElementById("submit-btn");
+  const honeypotInput = document.getElementById("bot-field");
+  let isSubmitting = false;
 
   const fields = {
     name: {
       input: document.getElementById("contact-name"),
       error: document.getElementById("error-name"),
-      validate: (val) => (val.trim().length >= 2 ? "" : "Please enter your name (at least 2 characters).")
+      validate: (val) => {
+        const trimmed = val.trim();
+        if (trimmed.length < 2) return "Please enter your name (at least 2 characters).";
+        if (trimmed.length > 80) return "Name must be 80 characters or fewer.";
+        return "";
+      }
     },
     email: {
       input: document.getElementById("contact-email"),
@@ -340,6 +299,8 @@
       validate: (val) => {
         const trimmed = val.trim();
         if (!trimmed) return "Please enter your email address.";
+        if (trimmed.length > 120) return "Email address must be 120 characters or fewer.";
+        if (trimmed.includes("..")) return "Please enter a valid email address.";
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed)
           ? ""
           : "Please enter a valid email address.";
@@ -348,12 +309,22 @@
     subject: {
       input: document.getElementById("contact-subject"),
       error: document.getElementById("error-subject"),
-      validate: (val) => (val.trim().length >= 3 ? "" : "Please enter a subject (at least 3 characters).")
+      validate: (val) => {
+        const trimmed = val.trim();
+        if (trimmed.length < 3) return "Please enter a subject (at least 3 characters).";
+        if (trimmed.length > 140) return "Subject must be 140 characters or fewer.";
+        return "";
+      }
     },
     message: {
       input: document.getElementById("contact-message"),
       error: document.getElementById("error-message"),
-      validate: (val) => (val.trim().length >= 10 ? "" : "Please enter a message (at least 10 characters).")
+      validate: (val) => {
+        const trimmed = val.trim();
+        if (trimmed.length < 10) return "Please enter a message (at least 10 characters).";
+        if (trimmed.length > 1500) return "Message must be 1500 characters or fewer.";
+        return "";
+      }
     }
   };
 
@@ -367,32 +338,35 @@
     return !errorMsg;
   }
 
-  function isEmailJsConfigured() {
-    return (
-      isConfiguredValue(EMAILJS_CONFIG.publicKey) &&
-      isConfiguredValue(EMAILJS_CONFIG.serviceId) &&
-      isConfiguredValue(EMAILJS_CONFIG.templateId)
-    );
-  }
+  function buildSafeMailtoUrl(nameVal, emailVal, subjectVal, messageVal) {
+    const prefix = `From: ${nameVal} (${emailVal})\n\n`;
+    const truncationNote = "\n\n[Message shortened to fit email link limits]";
+    const makeUrl = (bodyText) =>
+      `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjectVal)}` +
+      `&body=${encodeURIComponent(bodyText)}`;
 
-  function loadEmailJsSdk() {
-    if (typeof window.emailjs !== "undefined") {
-      return Promise.resolve(window.emailjs);
+    const fullUrl = makeUrl(`${prefix}${messageVal}`);
+    if (fullUrl.length <= MAX_MAILTO_URL_LENGTH) {
+      return { url: fullUrl, truncated: false };
     }
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = EMAILJS_SDK_URL;
-      script.async = true;
-      script.onload = () => {
-        if (typeof window.emailjs !== "undefined") {
-          resolve(window.emailjs);
-        } else {
-          reject(new Error("EmailJS SDK loaded without global object."));
-        }
-      };
-      script.onerror = () => reject(new Error("Failed to load EmailJS SDK."));
-      document.head.appendChild(script);
-    });
+
+    let low = 0;
+    let high = messageVal.length;
+    let bestUrl = makeUrl(`${prefix}${truncationNote.trimStart()}`);
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const candidateBody = `${prefix}${messageVal.slice(0, mid).trimEnd()}${truncationNote}`;
+      const candidateUrl = makeUrl(candidateBody);
+      if (candidateUrl.length <= MAX_MAILTO_URL_LENGTH) {
+        bestUrl = candidateUrl;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    return { url: bestUrl, truncated: true };
   }
 
   function showFormStatus(type, text, mailtoHref) {
@@ -421,10 +395,24 @@
           validateField(key);
         }
       });
+      field.input.addEventListener("blur", () => {
+        if (field.input.value.trim().length > 0 || field.input.classList.contains("is-invalid")) {
+          validateField(key);
+        }
+      });
     });
 
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (isSubmitting) {
+        return;
+      }
+
+      // Silently stop automated honeypot submissions
+      if (honeypotInput && honeypotInput.value.trim() !== "") {
+        return;
+      }
 
       const results = Object.keys(fields).map((key) => validateField(key));
       if (results.includes(false)) {
@@ -442,40 +430,60 @@
       const emailVal = fields.email.input.value.trim();
       const subjectVal = fields.subject.input.value.trim();
       const messageVal = fields.message.input.value.trim();
+      const mailtoResult = buildSafeMailtoUrl(nameVal, emailVal, subjectVal, messageVal);
 
-      const mailtoBody = `From: ${nameVal} (${emailVal})\n\n${messageVal}`;
-      const mailtoUrl =
-        `mailto:gibinthomas2201@gmail.com?subject=${encodeURIComponent(subjectVal)}` +
-        `&body=${encodeURIComponent(mailtoBody)}`;
-
-      if (!isEmailJsConfigured()) {
-        showFormStatus(
-          "info",
-          "Form validated! Direct browser submission requires configuring EmailJS credentials (publicKey, serviceId, templateId) in main.js.",
-          mailtoUrl
-        );
+      if (window.location.protocol === "file:") {
+        const localNotice = mailtoResult.truncated
+          ? "Local file preview cannot reach Netlify Forms. Use the email link below (long text trimmed to fit link limits) or test on the deployed site."
+          : "Local file preview cannot reach Netlify Forms. Use the email link below or submit on the deployed site.";
+        showFormStatus("info", localNotice, mailtoResult.url);
         return;
       }
 
       try {
-        if (submitBtn) submitBtn.disabled = true;
-        const emailjsClient = await loadEmailJsSdk();
-        emailjsClient.init({ publicKey: EMAILJS_CONFIG.publicKey });
-        await emailjsClient.sendForm(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateId,
-          contactForm
-        );
+        isSubmitting = true;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-busy", "true");
+        }
+        showFormStatus("info", "Sending your message...");
+
+        const formData = new FormData(contactForm);
+        formData.set("form-name", contactForm.getAttribute("name") || "contact");
+
+        const response = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        });
+
+        if (!response.ok) {
+          throw new Error(`Form request failed (${response.status})`);
+        }
+
         showFormStatus("success", "Thank you! Your message has been sent successfully.");
         contactForm.reset();
+        Object.keys(fields).forEach((key) => {
+          const field = fields[key];
+          if (field && field.input) {
+            field.input.classList.remove("is-invalid");
+            field.input.removeAttribute("aria-invalid");
+          }
+          if (field && field.error) {
+            field.error.textContent = "";
+          }
+        });
       } catch (_err) {
-        showFormStatus(
-          "error",
-          "Could not send via EmailJS right now. You can send your message directly using your email app below.",
-          mailtoUrl
-        );
+        const errNotice = mailtoResult.truncated
+          ? "Could not send directly right now. Please send via your email app below (long text was trimmed to fit email link limits)."
+          : "Could not send directly right now. You can send your message using your email app below.";
+        showFormStatus("error", errNotice, mailtoResult.url);
       } finally {
-        if (submitBtn) submitBtn.disabled = false;
+        isSubmitting = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute("aria-busy");
+        }
       }
     });
   }

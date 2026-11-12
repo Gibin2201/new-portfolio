@@ -1,0 +1,4 @@
+{
+  "siteUrl": "https://gibinthomas.netlify.app",
+  "_instructions": "Live production Netlify HTTPS URL without a trailing slash for canonical, Open Graph, Twitter, robots.txt, and sitemap.xml metadata. Re-run `node scripts/prepare-dist.mjs` after changing."
+}

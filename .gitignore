@@ -4,6 +4,7 @@ backup/
 
 # Generated Netlify publish output (rebuilt automatically via netlify.toml)
 dist/
+.netlify/
 
 # OS metadata
 .DS_Store
