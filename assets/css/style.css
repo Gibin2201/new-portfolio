@@ -714,6 +714,23 @@ textarea {
   color: #FFFFFF;
 }
 
+.skill-card--compact {
+  grid-column: 1 / -1;
+  padding: 22px 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 16px 28px;
+}
+
+.skill-card--compact .skill-card-desc {
+  margin-bottom: 0;
+}
+
+.skill-card--compact .skill-tags {
+  justify-content: flex-end;
+}
+
 /* ==========================================================================
    PROJECTS SECTION
    ========================================================================== */
@@ -1859,22 +1876,6 @@ textarea {
   overflow: hidden;
 }
 
-.form-noscript {
-  margin-top: 16px;
-  padding: 12px 14px;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-muted);
-  border: 1px solid #BFDBFE;
-  color: var(--text-primary);
-  font-size: 0.88rem;
-}
-
-.form-noscript a {
-  color: var(--accent-blue);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
 .form-group input.is-invalid,
 .form-group textarea.is-invalid {
   border-color: #DC2626;
@@ -2299,6 +2300,15 @@ textarea {
 
   .skills-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skill-card--compact {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px;
+  }
+
+  .skill-card--compact .skill-tags {
+    justify-content: flex-start;
   }
 
   .about-grid,
