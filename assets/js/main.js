@@ -508,7 +508,46 @@
     });
   }
 
-  /* ---------- 6. Footer Year ---------- */
+  /* ---------- 6. Back to Top Button ---------- */
+  const backToTopBtn = document.getElementById("back-to-top");
+  if (backToTopBtn) {
+    let btTicking = false;
+    const syncBackToTop = () => {
+      btTicking = false;
+      const shouldShow = window.scrollY > 420;
+      if (shouldShow) {
+        if (backToTopBtn.hasAttribute("hidden")) {
+          backToTopBtn.removeAttribute("hidden");
+        }
+        backToTopBtn.classList.add("is-visible");
+      } else {
+        backToTopBtn.classList.remove("is-visible");
+        backToTopBtn.setAttribute("hidden", "");
+      }
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!btTicking) {
+          window.requestAnimationFrame(syncBackToTop);
+          btTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth"
+      });
+    });
+
+    syncBackToTop();
+  }
+
+  /* ---------- 7. Footer Year ---------- */
   const yearEl = document.getElementById("footer-year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());

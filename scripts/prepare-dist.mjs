@@ -14,6 +14,7 @@ const CORE_PRODUCTION_FILES = [
   "sitemap.xml",
   "assets/documents/Gibin Thomas.pdf",
   "assets/images/profile/Gibin.jpg",
+  "assets/images/social/og-image.png",
   "assets/icons/favicon.svg",
   "assets/icons/logo.svg",
   "assets/icons/logo.png"
