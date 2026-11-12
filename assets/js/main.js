@@ -547,7 +547,86 @@
     syncBackToTop();
   }
 
-  /* ---------- 7. Footer Year ---------- */
+  /* ---------- 7. Certificate Preview Modal ---------- */
+  const certModal = document.getElementById("cert-modal");
+  const certModalImg = document.getElementById("cert-modal-img");
+  const certModalTitle = document.getElementById("cert-modal-title");
+  const certModalMeta = document.getElementById("cert-modal-meta");
+  const certModalClose = document.getElementById("cert-modal-close");
+  const certTriggers = document.querySelectorAll("[data-cert-src]");
+
+  if (certModal && certModalImg && certTriggers.length > 0) {
+    let activeCertTrigger = null;
+    const backgroundRegions = [
+      document.getElementById("site-header"),
+      document.getElementById("main-content"),
+      document.querySelector(".site-footer"),
+      document.getElementById("back-to-top")
+    ].filter(Boolean);
+
+    const setBackgroundInert = (isInert) => {
+      backgroundRegions.forEach((el) => {
+        if ("inert" in el) {
+          el.inert = isInert;
+        }
+      });
+    };
+
+    const closeCertModal = () => {
+      if (certModal.hasAttribute("hidden")) return;
+      certModal.setAttribute("hidden", "");
+      document.body.style.overflow = "";
+      setBackgroundInert(false);
+      certModalImg.removeAttribute("src");
+      certModalImg.alt = "";
+      if (activeCertTrigger && typeof activeCertTrigger.focus === "function") {
+        activeCertTrigger.focus();
+      }
+      activeCertTrigger = null;
+    };
+
+    const openCertModal = (trigger) => {
+      const src = trigger.getAttribute("data-cert-src");
+      if (!src) return;
+      activeCertTrigger = trigger;
+      certModalImg.src = src;
+      certModalImg.alt = trigger.getAttribute("data-cert-alt") || "Full-size certificate preview";
+      if (certModalTitle) {
+        certModalTitle.textContent = trigger.getAttribute("data-cert-title") || "Certificate Preview";
+      }
+      if (certModalMeta) {
+        certModalMeta.textContent = trigger.getAttribute("data-cert-meta") || "";
+      }
+      certModal.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      setBackgroundInert(true);
+      if (certModalClose) {
+        certModalClose.focus();
+      }
+    };
+
+    certTriggers.forEach((btn) => {
+      btn.addEventListener("click", () => openCertModal(btn));
+    });
+
+    if (certModalClose) {
+      certModalClose.addEventListener("click", closeCertModal);
+    }
+
+    certModal.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.hasAttribute("data-close-modal")) {
+        closeCertModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !certModal.hasAttribute("hidden")) {
+        closeCertModal();
+      }
+    });
+  }
+
+  /* ---------- 8. Footer Year ---------- */
   const yearEl = document.getElementById("footer-year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
